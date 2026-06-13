@@ -3,7 +3,17 @@
 import { TECH_STACK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-function TechBadge({ name, level, color, icon }: { name: string; level: string; color: string; icon: string }) {
+function TechBadge({
+  name,
+  level,
+  color,
+  icon,
+}: {
+  name: string;
+  level: string;
+  color: string;
+  icon: string;
+}) {
   return (
     <div className="flex items-center gap-3 whitespace-nowrap rounded-full border border-[var(--border)] bg-[var(--surface)]/50 px-6 py-3 shadow-sm backdrop-blur-md transition-colors hover:bg-[var(--surface)] hover:border-[var(--accent-soft)] flex-shrink-0">
       <svg
@@ -14,7 +24,9 @@ function TechBadge({ name, level, color, icon }: { name: string; level: string; 
       >
         <path d={icon} />
       </svg>
-      <span className="text-base font-medium text-[var(--foreground)]">{name}</span>
+      <span className="text-base font-medium text-[var(--foreground)]">
+        {name}
+      </span>
       <span className="ml-1 rounded-full bg-[var(--surface)] px-2 py-0.5 text-xs text-[var(--muted)]">
         {level}
       </span>

@@ -6,13 +6,8 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import Logo from "@/components/ui/Logo";
 
-const handleDownloadCV = () => {
-  const link = document.createElement("a");
-  link.href = "/CTH_CV_Tester.pdf";
-  link.download = "CTH_CV_Tester.pdf";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+const handleViewCV = () => {
+  window.open("/CTH_CV_Tester.pdf", "_blank");
 };
 
 export default function Header() {
@@ -69,8 +64,8 @@ export default function Header() {
         {/* Right side */}
         <div className="flex items-center gap-4">
           <div className="hidden lg:block">
-            <button onClick={handleDownloadCV} className="btn-primary">
-              Download CV
+            <button onClick={handleViewCV} className="btn-primary">
+              View Resume
             </button>
           </div>
           <button
@@ -108,12 +103,12 @@ export default function Header() {
               <li className="mt-4">
                 <button
                   onClick={() => {
-                    handleDownloadCV();
+                    handleViewCV();
                     setMobileOpen(false);
                   }}
                   className="btn-primary w-full text-center"
                 >
-                  Download CV
+                  View Resume
                 </button>
               </li>
             </ul>

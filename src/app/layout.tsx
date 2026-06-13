@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   description:
     "Digital portfolio for QA testing and software quality projects. 3rd-year IT student passionate about software testing.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 };
 

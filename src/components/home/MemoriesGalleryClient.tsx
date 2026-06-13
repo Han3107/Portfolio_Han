@@ -85,10 +85,10 @@ export default function MemoriesGalleryClient({
 
   const containerClass =
     mode === "wide"
-      ? "grid gap-5 sm:grid-cols-2"
+      ? "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
       : mode === "small"
-        ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        : "grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+        ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-5"
+        : "grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5";
 
   return (
     <section className="relative border-b border-[var(--border)] bg-[var(--background)] py-16 lg:py-28 overflow-hidden">
@@ -96,7 +96,7 @@ export default function MemoriesGalleryClient({
       <div className="absolute left-10 top-12 h-64 w-64 rounded-full bg-[var(--accent-warm)]/25 blur-[100px]" />
       <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[var(--accent)]/10 blur-[110px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-7xl px-10">
         <div className="mb-10 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between reveal">
           <div className="max-w-2xl">
             <p className="section-label">Gallery</p>

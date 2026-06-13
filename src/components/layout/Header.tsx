@@ -6,6 +6,15 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import Logo from "@/components/ui/Logo";
 
+const handleDownloadCV = () => {
+  const link = document.createElement("a");
+  link.href = "/CTH_CV_Tester.pdf";
+  link.download = "CTH_CV_Tester.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -60,9 +69,9 @@ export default function Header() {
         {/* Right side */}
         <div className="flex items-center gap-4">
           <div className="hidden lg:block">
-            <Link href="/cv.pdf" className="btn-primary">
+            <button onClick={handleDownloadCV} className="btn-primary">
               Download CV
-            </Link>
+            </button>
           </div>
           <button
             className="lg:hidden text-[var(--foreground)] hover:text-[var(--accent-cyan)] transition-colors"
@@ -97,9 +106,15 @@ export default function Header() {
                 </li>
               ))}
               <li className="mt-4">
-                <Link href="/cv.pdf" className="btn-primary w-full text-center">
+                <button
+                  onClick={() => {
+                    handleDownloadCV();
+                    setMobileOpen(false);
+                  }}
+                  className="btn-primary w-full text-center"
+                >
                   Download CV
-                </Link>
+                </button>
               </li>
             </ul>
           </nav>

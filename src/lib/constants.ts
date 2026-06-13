@@ -155,27 +155,27 @@ export const SOCIAL_LINKS = [
 // Featured Projects
 export const FEATURED_PROJECTS = [
   {
+    title: "TreeManagement_Nhom09",
+    description:
+      "A TypeScript tree management project focused on structured data workflows, interface logic, and practical full-stack development.",
+    tags: ["TypeScript", "Management", "Full Stack"],
+    image: "/images/projects/tree-management.jpg",
+    href: "https://github.com/Han3107/TreeManagement_Nhom09",
+  },
+  {
+    title: "FLAPPY_BIRD",
+    description:
+      "A C++ game project recreating Flappy Bird mechanics while practicing game loops, collision handling, and interactive logic.",
+    tags: ["C++", "Game", "Coursework"],
+    image: "/images/projects/flappy-bird.jpg",
+    href: "https://github.com/Han3107/FLAPPY_BIRD",
+  },
+  {
     title: "WEB_BAN_THUOC",
     description:
       "A Java web project for an online medicine store, focused on product browsing, commerce workflows, and practical backend development.",
     tags: ["Java", "Web App", "E-Commerce"],
     image: "/images/projects/ecommerce.jpg",
     href: "https://github.com/Han3107/WEB_BAN_THUOC",
-  },
-  {
-    title: "WEB_CHAT",
-    description:
-      "A Java chat application project exploring messaging flows, client-server concepts, and real-time communication patterns.",
-    tags: ["Java", "Chat App", "Networking"],
-    image: "/images/projects/portfolio.jpg",
-    href: "https://github.com/Han3107/WEB_CHAT",
-  },
-  {
-    title: "Learning_English",
-    description:
-      "An HTML learning project for English study content, practicing web layout, structure, and user-facing educational pages.",
-    tags: ["HTML", "Learning", "Frontend"],
-    image: "/images/projects/taskmanager.jpg",
-    href: "https://github.com/Han3107/Learning_English",
   },
 ];

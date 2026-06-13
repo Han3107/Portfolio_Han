@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, Zap, FileText, Layers } from "lucide-react";
 import { ABOUT_CARDS } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const iconMap: Record<string, React.ReactNode> = {
-  Eye: <Eye className="w-6 h-6" />,
+  Eye: <Image src="/logo.png" alt="Logo" width={24} height={24} />,
   Zap: <Zap className="w-6 h-6" />,
   FileText: <FileText className="w-6 h-6" />,
   Layers: <Layers className="w-6 h-6" />,
@@ -29,13 +30,14 @@ export default function AboutPreview() {
             <p className="section-label">About Me</p>
             <div className="mt-2 flex items-center gap-4">
               <h2 className="section-title">
-                Ensuring software quality through meticulous testing and keen observation
+                Ensuring software quality through meticulous testing and keen
+                observation
               </h2>
               <span className="hidden h-px w-16 bg-[var(--accent-warm)] sm:block flex-shrink-0" />
             </div>
             <p className="section-desc">
-              Focused on software quality assurance, learning modern
-              testing tools, and finding bugs before users do.
+              Focused on software quality assurance, learning modern testing
+              tools, and finding bugs before users do.
             </p>
           </div>
           <div className="mt-10">

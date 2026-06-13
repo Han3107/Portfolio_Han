@@ -18,18 +18,18 @@ export const metadata: Metadata = {
 const allProjects = [
   ...FEATURED_PROJECTS,
   {
-    title: "225DHPC",
-    description: "A C++ coursework repository focused on programming fundamentals and academic problem solving.",
-    tags: ["C++", "Coursework", "Problem Solving"],
-    image: "/images/projects/blog.jpg",
-    href: "https://github.com/Han3107/225DHPC",
+    title: "Portfolio_Han",
+    description: "A TypeScript portfolio website presenting personal information, skills, projects, and contact details.",
+    tags: ["TypeScript", "Next.js", "Portfolio"],
+    image: "/images/projects/portfolio.jpg",
+    href: "https://github.com/Han3107/Portfolio_Han",
   },
   {
-    title: "225_LTM",
-    description: "An HTML project repository connected to networking coursework and web interface practice.",
-    tags: ["HTML", "Networking", "Coursework"],
+    title: "WEB_CHAT",
+    description: "A Java chat application project exploring messaging flows, client-server concepts, and real-time communication patterns.",
+    tags: ["Java", "Chat App", "Networking"],
     image: "/images/projects/chat.jpg",
-    href: "https://github.com/Han3107/225_LTM",
+    href: "https://github.com/Han3107/WEB_CHAT",
   },
 ];
 

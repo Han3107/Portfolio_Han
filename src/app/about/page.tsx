@@ -3,7 +3,7 @@ import { Code2, Database, Monitor, Server, Smartphone, Wrench } from "lucide-rea
 
 export const metadata: Metadata = {
   title: "About - Han Han Portfolio",
-  description: "Learn more about Mạnh Huy - 3rd-year IT student passionate about software testing.",
+  description: "Learn more about Han Han - 3rd-year IT student passionate about software testing.",
 };
 
 const skills = [
@@ -37,7 +37,7 @@ export default function AboutPage() {
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-zinc-400 leading-7">
-            I&apos;m Mạnh Huy, a 3rd-year IT student with a passion for software testing and quality assurance.
+            I&apos;m Han Han, a 3rd-year IT student with a passion for software testing and quality assurance.
             I believe in thorough testing, attention to detail, and continuous learning.
           </p>
         </div>

@@ -1,0 +1,438 @@
+﻿@import "tailwindcss";
+
+/* Design Tokens */
+:root {
+  --background: #fff8f5;
+  --foreground: #17171f;
+  --surface: #ffffff;
+  --surface-cream: #fff0ec;
+  --accent: #ff4f45;
+  --accent-cyan: #ff7d6f;
+  --accent-warm: #ffc7bd;
+  --accent-soft: #ffe4df;
+  --muted: #6d6470;
+  --border: rgba(255, 79, 69, 0.16);
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 14% 8%,
+      rgba(255, 199, 189, 0.55),
+      transparent 32rem
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(255, 79, 69, 0.16),
+      transparent 28rem
+    ),
+    var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 79, 69, 0.28);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 79, 69, 0.42);
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float-bg {
+  0%,
+  100% {
+    transform: translateY(0) translateX(-5%);
+  }
+  50% {
+    transform: translateY(-12px) translateX(5%);
+  }
+}
+
+@keyframes ambient-blob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(34px, -28px, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-26px, 22px, 0) scale(0.94);
+  }
+}
+
+@keyframes float-fg {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes underline-slide {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes underline-expand {
+  0% {
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes float-text {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Animation Utility Classes */
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out both;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 0.7s ease-out both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-float-bg {
+  animation: float-bg 6s ease-in-out infinite;
+}
+
+.ambient-blob {
+  border-radius: 9999px;
+  filter: blur(120px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  will-change: transform;
+  animation: ambient-blob 12s ease-in-out infinite;
+}
+
+.animate-float-fg {
+  animation: float-fg 5s ease-in-out infinite;
+}
+
+.animate-float-text {
+  animation: float-text 4s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% 100%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-underline-slide {
+  position: relative;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-cyan) 100%);
+  background-size: 200% 3px;
+  background-position: -100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 4px;
+  animation: underline-slide 2s ease-in-out infinite;
+}
+
+.animate-underline-expand {
+  position: relative;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  background-size: 0% 2px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  padding-bottom: 4px;
+  animation: underline-expand 1.5s ease-in-out forwards;
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Grid Background */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 79, 69, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 79, 69, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+/* Button Styles */
+.btn-primary {
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+  color: white;
+  box-shadow: 0 16px 36px rgba(255, 79, 69, 0.24);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--foreground);
+  border-color: var(--accent);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--foreground);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-cream);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* Section Header */
+.section-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.section-title {
+  margin-top: 0.5rem;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.3;
+}
+
+.section-desc {
+  margin-top: 1rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(255, 79, 69, 0.13);
+  border-color: var(--border);
+}
+
+/* Marquee Container */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--background), transparent);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--background), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Responsive Helpers */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+}

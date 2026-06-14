@@ -60,47 +60,78 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {allProjects.map((project, i) => (
-              <a
-                key={i}
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]/30 no-underline backdrop-blur-sm transition-all duration-500 hover:border-[var(--accent-soft)] hover:-translate-y-2 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
-              >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden bg-gradient-to-br from-[var(--surface)] to-[var(--background)]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-5xl font-black bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-cyan)]/20 bg-clip-text text-transparent select-none">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-[var(--accent)]/0 transition-colors duration-500 group-hover:bg-[var(--accent)]/10 flex items-center justify-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]">
-                      <ExternalLink size={18} />
-                    </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]" style={{ transitionDelay: "100ms" }}>
-                      <GithubIcon size={18} />
-                    </div>
-                  </div>
-                </div>
+              (() => {
+                const githubLinks =
+                  "githubLinks" in project && project.githubLinks
+                    ? project.githubLinks
+                    : [{ label: "GitHub", href: project.href }];
+                const projectTitle =
+                  "displayTitle" in project ? project.displayTitle : project.title;
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-[var(--foreground)] group-hover:text-[var(--accent-cyan)] transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)] line-clamp-3">
-                    {project.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs text-[var(--muted)]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </a>
+                return (
+                  <article
+                    key={i}
+                    className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]/30 no-underline backdrop-blur-sm transition-all duration-500 hover:border-[var(--accent-soft)] hover:-translate-y-2 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
+                  >
+                    {/* Image */}
+                    <div className="relative h-52 overflow-hidden bg-gradient-to-br from-[var(--surface)] to-[var(--background)]">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-5xl font-black bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-cyan)]/20 bg-clip-text text-transparent select-none">
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-[var(--accent)]/0 transition-colors duration-500 group-hover:bg-[var(--accent)]/10 flex items-center justify-center gap-3">
+                        {"liveHref" in project && project.liveHref ? (
+                          <a
+                            href={project.liveHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open ${projectTitle} live site`}
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]"
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                        ) : null}
+                        {githubLinks.map((link, linkIndex) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open ${projectTitle} ${link.label} repository`}
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]"
+                            style={{ transitionDelay: `${("liveHref" in project && project.liveHref ? 1 : 0) * 100 + linkIndex * 100}ms` }}
+                          >
+                            <GithubIcon size={18} />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-semibold text-[var(--foreground)] no-underline transition-colors group-hover:text-[var(--accent-cyan)]"
+                      >
+                        {projectTitle}
+                      </a>
+                      <p className="mt-2 text-sm leading-relaxed text-[var(--muted)] line-clamp-3">
+                        {project.description}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs text-[var(--muted)]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })()
             ))}
           </div>
         </div>

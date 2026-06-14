@@ -208,27 +208,33 @@ export const SOCIAL_LINKS = [
 // Featured Projects
 export const FEATURED_PROJECTS = [
   {
-    title: "TreeManagement_Nhom09",
+    title: "GGZone-WNC",
     description:
-      "A TypeScript tree management project focused on structured data workflows, interface logic, and practical full-stack development.",
-    tags: ["TypeScript", "Management", "Full Stack"],
-    image: "/images/projects/tree-management.jpg",
-    href: "https://github.com/Han3107/TreeManagement_Nhom09",
+      "A team web project for a gaming-focused platform, featuring user flows, authentication screens, and deployed full-stack delivery.",
+    tags: ["Team Project", "Web App", "Full Stack"],
+    image: "/images/projects/ggzone.jpg",
+    href: "https://github.com/manhhuy140805/GGZone-WNC",
+    liveHref: "https://ggzone-kappa.vercel.app/login",
   },
   {
-    title: "FLAPPY_BIRD",
+    title: "Quản lý cây xanh Đà Nẵng",
     description:
-      "A C++ game project recreating Flappy Bird mechanics while practicing game loops, collision handling, and interactive logic.",
-    tags: ["C++", "Game", "Coursework"],
-    image: "/images/projects/flappy-bird.jpg",
-    href: "https://github.com/Han3107/FLAPPY_BIRD",
+      "A team project for managing urban green trees in Da Nang, focused on data management, administrative workflows, and practical software delivery.",
+    tags: ["Team Project", "Management", "Web App"],
+    image: "/images/projects/da-nang-tree-management.jpg",
+    href: "https://github.com/NguyenHuuDinh135/225DAPM_Nhom9",
+    displayTitle: "Qu\u1ea3n l\u00fd c\u00e2y xanh \u0110\u00e0 N\u1eb5ng",
   },
   {
-    title: "WEB_BAN_THUOC",
+    title: "Marketplace - Upwork",
     description:
-      "A Java web project for an online medicine store, focused on product browsing, commerce workflows, and practical backend development.",
-    tags: ["Java", "Web App", "E-Commerce"],
-    image: "/images/projects/ecommerce.jpg",
-    href: "https://github.com/Han3107/WEB_BAN_THUOC",
+      "A marketplace web application inspired by Upwork, covering freelancer profiles, service discovery, hiring flows, and project collaboration features.",
+    tags: ["Marketplace", "Web App", "Full Stack"],
+    image: "/images/projects/freelancer-marketplace.jpg",
+    href: "https://github.com/manhhuy140805/TMDT-FE",
+    githubLinks: [
+      { label: "Frontend", href: "https://github.com/manhhuy140805/TMDT-FE" },
+      { label: "Backend", href: "https://github.com/manhhuy140805/TMDT-BE" },
+    ],
   },
 ];

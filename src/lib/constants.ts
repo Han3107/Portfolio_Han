@@ -200,7 +200,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Email",
-    href: "mailto:contact@hanhan.dev",
+    href: "mailto:caothihan05@gmail.com",
     icon: "Mail",
   },
 ];

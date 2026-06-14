@@ -33,9 +33,9 @@ export default function ContactCTA() {
             <Mail size={18} className="mr-2" />
             Send a Message
           </Link>
-          <a href="mailto:contact@hanhan.dev" className="btn-secondary group">
+          <a href="mailto:caothihan05@gmail.com" className="btn-secondary group">
             <Send size={16} className="mr-2" />
-            contact@hanhan.dev
+            caothihan05@gmail.com
           </a>
         </div>
 

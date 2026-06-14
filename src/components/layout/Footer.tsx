@@ -169,7 +169,7 @@ export default function Footer() {
                   <rect width="20" height="16" x="2" y="4" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
-                <span className="text-sm">contact@hanhan.dev</span>
+                <span className="text-sm">caothihan05@gmail.com</span>
               </div>
 
               {/* Location */}
@@ -182,7 +182,7 @@ export default function Footer() {
                 >
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
                 </svg>
-                <span className="text-sm">Nha Trang, Vietnam</span>
+                <span className="text-sm">Hai Chau, Da Nang</span>
               </div>
 
               {/* Social Icons */}

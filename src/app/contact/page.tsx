@@ -81,7 +81,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-[var(--muted)]">Email</p>
-                    <p className="text-[var(--foreground)] font-medium">contact@hanhan.dev</p>
+                    <p className="text-[var(--foreground)] font-medium">caothihan05@gmail.com</p>
                   </div>
                 </div>
 
@@ -91,7 +91,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-[var(--muted)]">Phone</p>
-                    <p className="text-[var(--foreground)] font-medium">+84 xxx xxx xxx</p>
+                    <p className="text-[var(--foreground)] font-medium">0392813657</p>
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-[var(--muted)]">Location</p>
-                    <p className="text-[var(--foreground)] font-medium">Ho Chi Minh City, Vietnam</p>
+                    <p className="text-[var(--foreground)] font-medium">Hai Chau, Da Nang</p>
                   </div>
                 </div>
               </div>

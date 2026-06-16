@@ -7,7 +7,7 @@ import { NAV_LINKS } from "@/lib/constants";
 import Logo from "@/components/ui/Logo";
 
 const handleViewCV = () => {
-  window.open("/CTH_CV_Tester.pdf", "_blank");
+  window.open("/CTH_CV_Tester.pdf?v=20260616", "_blank");
 };
 
 export default function Header() {

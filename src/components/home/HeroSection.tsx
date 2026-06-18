@@ -139,12 +139,13 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
       <div className="absolute inset-0 z-0">
-        <div className="ambient-blob absolute -left-24 top-16 h-[430px] w-[430px] bg-[var(--accent-warm)] opacity-55" />
-        <div className="ambient-blob absolute right-[-10%] top-[-12%] h-[540px] w-[540px] bg-[var(--accent)] opacity-20 [animation-delay:-4s] [animation-duration:15s]" />
-        <div className="ambient-blob absolute bottom-[-18%] left-[35%] h-[360px] w-[360px] bg-[#ff9f6e] opacity-28 [animation-delay:-8s] [animation-duration:18s]" />
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,248,245,0.72),rgba(255,248,245,0.48)_46%,rgba(255,248,245,0.78))]" />
+        <div className="ambient-blob absolute -left-24 top-16 h-[430px] w-[430px] bg-[var(--accent-warm)] opacity-70" />
+        <div className="ambient-blob absolute right-[-10%] top-[-12%] h-[540px] w-[540px] bg-[var(--accent)] opacity-35 [animation-delay:-4s] [animation-duration:15s]" />
+        <div className="ambient-blob absolute bottom-[-18%] left-[35%] h-[360px] w-[360px] bg-[var(--accent-cyan)] opacity-35 [animation-delay:-8s] [animation-duration:18s]" />
+        <div className="absolute inset-0 bg-[var(--hero-overlay)]" />
+        <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_50%_50%,var(--hero-side-glow),transparent_58%)]" />
         <FloatingParticles />
-        <div className="absolute inset-0 grid-bg opacity-20" />
+        <div className="absolute inset-0 grid-bg opacity-30" />
       </div>
 
       <div className="relative z-10 mx-auto grid min-h-[680px] max-w-[1180px] items-center gap-8 px-6 py-12 lg:grid-cols-2 lg:gap-12 lg:py-8">
@@ -208,8 +209,8 @@ export default function HeroSection() {
             className="animate-fade-in-up relative z-10 mt-0 lg:-mt-14"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="absolute inset-0 scale-105 rounded-full bg-[var(--accent)] opacity-15 blur-3xl" />
-            <div className="relative h-[270px] w-[270px] overflow-hidden rounded-full border-[5px] border-white bg-[var(--accent-warm)] shadow-2xl shadow-[var(--accent)]/10 sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]">
+            <div className="absolute inset-0 scale-110 rounded-full bg-[var(--accent)] opacity-25 blur-3xl" />
+            <div className="relative h-[270px] w-[270px] overflow-hidden rounded-full border-[5px] border-[var(--portrait-ring)] bg-[var(--accent-warm)] shadow-2xl shadow-[var(--accent)]/20 sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]">
               <Image
                 src="/han.jpg"
                 alt="Han Han portrait"

@@ -37,7 +37,7 @@ const languages = [
 ];
 
 const heatLevels = [
-  "bg-[#fff0ec] border border-[#e8d5cf]",
+  "border border-[var(--github-heat-empty-border)] bg-[var(--github-heat-empty)]",
   "bg-[#ffb59f]",
   "bg-[#ff8f70]",
   "bg-[#e45a32]",
@@ -149,12 +149,12 @@ export default function GitHubActivity() {
           </h2>
         </div>
 
-        <div className="rounded-[8px] border border-[var(--border)] bg-[#fbfaf5] p-6 shadow-sm reveal lg:p-8">
+        <div className="rounded-[8px] border border-[var(--border)] bg-[var(--github-card-bg)] p-6 shadow-sm reveal lg:p-8">
           <ContributionGrid />
-          <div className="mt-4 h-5 rounded-[4px] bg-[var(--surface)] px-3">
+          <div className="mt-4 h-5 rounded-[4px] bg-[var(--github-scroll-bg)] px-3">
             <div className="flex h-full items-center gap-2">
               <span className="h-0 w-0 border-y-[5px] border-r-[7px] border-y-transparent border-r-[var(--muted)]/50" />
-              <div className="h-2 flex-1 rounded-full bg-[var(--muted)]/65" />
+              <div className="h-2 flex-1 rounded-full bg-[var(--github-scroll-track)]" />
               <span className="h-0 w-0 border-y-[5px] border-l-[7px] border-y-transparent border-l-[var(--muted)]/50" />
             </div>
           </div>

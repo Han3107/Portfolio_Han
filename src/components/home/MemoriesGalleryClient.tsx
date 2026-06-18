@@ -168,7 +168,7 @@ export default function MemoriesGalleryClient({
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80" />
-                <span className="absolute bottom-4 left-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-[var(--foreground)] backdrop-blur">
+                <span className="absolute bottom-4 left-4 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-xs font-semibold text-[#17171f] shadow-sm backdrop-blur">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               </button>

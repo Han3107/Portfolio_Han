@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import Logo from "@/components/ui/Logo";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const handleViewCV = () => {
   window.open("/CTH_CV_Tester.pdf?v=20260616", "_blank");
@@ -17,7 +18,7 @@ export default function Header() {
     <header
       className="sticky top-0 z-40 border-b border-[var(--border)]"
       style={{
-        background: "rgba(255,248,245,0.82)",
+        background: "var(--header-bg)",
         backdropFilter: "blur(12px)",
       }}
     >
@@ -63,6 +64,7 @@ export default function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <div className="hidden lg:block">
             <button onClick={handleViewCV} className="btn-primary">
               View Resume
@@ -83,7 +85,7 @@ export default function Header() {
         <div
           className="lg:hidden border-t border-[var(--border)] animate-fade-in-up"
           style={{
-            background: "rgba(255,248,245,0.96)",
+            background: "var(--header-menu-bg)",
             backdropFilter: "blur(20px)",
           }}
         >

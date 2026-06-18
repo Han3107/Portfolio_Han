@@ -2,16 +2,73 @@
 
 /* Design Tokens */
 :root {
+  color-scheme: light;
   --background: #fff8f5;
   --foreground: #17171f;
   --surface: #ffffff;
   --surface-cream: #fff0ec;
+  --surface-elevated: rgba(255, 255, 255, 0.72);
+  --header-bg: rgba(255, 248, 245, 0.82);
+  --header-menu-bg: rgba(255, 248, 245, 0.96);
+  --hero-overlay: linear-gradient(
+    115deg,
+    rgba(255, 248, 245, 0.7),
+    rgba(255, 235, 229, 0.54) 45%,
+    rgba(255, 248, 245, 0.78)
+  );
+  --hero-side-glow: rgba(255, 127, 112, 0.3);
+  --portrait-ring: #ffffff;
+  --github-card-bg: #fbfaf5;
+  --github-heat-empty: #fff0ec;
+  --github-heat-empty-border: #e8d5cf;
+  --github-scroll-bg: #2a2d36;
+  --github-scroll-track: rgba(109, 100, 112, 0.65);
   --accent: #ff4f45;
   --accent-cyan: #ff7d6f;
   --accent-warm: #ffc7bd;
   --accent-soft: #ffe4df;
   --muted: #6d6470;
   --border: rgba(255, 79, 69, 0.16);
+  --bg-glow-primary: rgba(255, 199, 189, 0.55);
+  --bg-glow-secondary: rgba(255, 79, 69, 0.16);
+  --grid-line: rgba(255, 79, 69, 0.08);
+  --accent-shadow: rgba(255, 79, 69, 0.24);
+  --card-shadow: rgba(255, 79, 69, 0.13);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #101115;
+  --foreground: #f7f2ef;
+  --surface: #191b22;
+  --surface-cream: #261b1e;
+  --surface-elevated: rgba(25, 27, 34, 0.78);
+  --header-bg: rgba(16, 17, 21, 0.84);
+  --header-menu-bg: rgba(16, 17, 21, 0.96);
+  --hero-overlay: linear-gradient(
+    115deg,
+    rgba(16, 17, 21, 0.9),
+    rgba(43, 24, 26, 0.76) 45%,
+    rgba(16, 17, 21, 0.86)
+  );
+  --hero-side-glow: rgba(255, 103, 95, 0.2);
+  --portrait-ring: rgba(255, 236, 232, 0.92);
+  --github-card-bg: rgba(25, 27, 34, 0.9);
+  --github-heat-empty: rgba(255, 154, 142, 0.09);
+  --github-heat-empty-border: rgba(255, 154, 142, 0.2);
+  --github-scroll-bg: rgba(255, 236, 232, 0.1);
+  --github-scroll-track: rgba(255, 236, 232, 0.42);
+  --accent: #ff675f;
+  --accent-cyan: #ff9a8e;
+  --accent-warm: #82413c;
+  --accent-soft: #392427;
+  --muted: #b1a8ad;
+  --border: rgba(255, 154, 142, 0.22);
+  --bg-glow-primary: rgba(255, 103, 95, 0.12);
+  --bg-glow-secondary: rgba(255, 154, 142, 0.1);
+  --grid-line: rgba(255, 154, 142, 0.09);
+  --accent-shadow: rgba(255, 103, 95, 0.22);
+  --card-shadow: rgba(255, 103, 95, 0.16);
 }
 
 /* Base */
@@ -31,12 +88,12 @@ body {
   background:
     radial-gradient(
       circle at 14% 8%,
-      rgba(255, 199, 189, 0.55),
+      var(--bg-glow-primary),
       transparent 32rem
     ),
     radial-gradient(
       circle at 88% 18%,
-      rgba(255, 79, 69, 0.16),
+      var(--bg-glow-secondary),
       transparent 28rem
     ),
     var(--background);
@@ -300,14 +357,14 @@ body {
 /* Grid Background */
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(255, 79, 69, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 79, 69, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 /* Glass Effect */
 .glass {
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--surface-elevated);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
@@ -327,7 +384,7 @@ body {
   border: 1px solid transparent;
   background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
   color: white;
-  box-shadow: 0 16px 36px rgba(255, 79, 69, 0.24);
+  box-shadow: 0 16px 36px var(--accent-shadow);
   text-decoration: none;
   cursor: pointer;
 }
@@ -348,7 +405,7 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--surface-elevated);
   color: var(--foreground);
   text-decoration: none;
   cursor: pointer;
@@ -390,7 +447,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(255, 79, 69, 0.13);
+  box-shadow: 0 20px 40px var(--card-shadow);
   border-color: var(--border);
 }
 

@@ -23,6 +23,7 @@
   --github-heat-empty-border: #e8d5cf;
   --github-scroll-bg: #2a2d36;
   --github-scroll-track: rgba(109, 100, 112, 0.65);
+  --github-chart-axis: rgba(109, 100, 112, 0.22);
   --accent: #ff4f45;
   --accent-cyan: #ff7d6f;
   --accent-warm: #ffc7bd;
@@ -58,6 +59,7 @@
   --github-heat-empty-border: rgba(255, 154, 142, 0.2);
   --github-scroll-bg: rgba(255, 236, 232, 0.1);
   --github-scroll-track: rgba(255, 236, 232, 0.42);
+  --github-chart-axis: rgba(255, 236, 232, 0.16);
   --accent: #ff675f;
   --accent-cyan: #ff9a8e;
   --accent-warm: #82413c;

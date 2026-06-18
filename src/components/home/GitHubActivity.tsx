@@ -1,21 +1,21 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, TrendingUp } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const months = [
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
+const monthlyCommits = [
+  { month: "Jun", value: 22 },
+  { month: "Jul", value: 25 },
+  { month: "Aug", value: 18 },
+  { month: "Sep", value: 16 },
+  { month: "Oct", value: 23 },
+  { month: "Nov", value: 30 },
+  { month: "Dec", value: 36 },
+  { month: "Jan", value: 38 },
+  { month: "Feb", value: 45 },
+  { month: "Mar", value: 32 },
+  { month: "Apr", value: 26 },
+  { month: "May", value: 18 },
 ];
 
 const languageColors = [
@@ -36,14 +36,6 @@ const languages = [
   { name: "Less", value: 7.46, color: languageColors[5] },
 ];
 
-const heatLevels = [
-  "border border-[var(--github-heat-empty-border)] bg-[var(--github-heat-empty)]",
-  "bg-[#ffb59f]",
-  "bg-[#ff8f70]",
-  "bg-[#e45a32]",
-  "bg-[#9f341d]",
-];
-
 function GithubIcon({ size = 18 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor">
@@ -52,45 +44,109 @@ function GithubIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-function getContributionLevel(week: number, day: number) {
-  const signal = (week * 7 + day * 11 + week * day) % 17;
-  const activeSeason = week > 22 && week < 51;
+function MonthlyCommitChart() {
+  const chartWidth = 960;
+  const chartHeight = 230;
+  const paddingX = 24;
+  const topY = 40;
+  const baselineY = 168;
+  const maxValue = Math.max(...monthlyCommits.map((item) => item.value));
+  const minValue = Math.min(...monthlyCommits.map((item) => item.value));
+  const valueRange = Math.max(maxValue - minValue, 1);
+  const peakIndex = monthlyCommits.findIndex((item) => item.value === maxValue);
+  const points = monthlyCommits.map((item, index) => {
+    const x =
+      paddingX +
+      (index / (monthlyCommits.length - 1)) * (chartWidth - paddingX * 2);
+    const y = baselineY - ((item.value - minValue) / valueRange) * (baselineY - topY);
 
-  if (!activeSeason && signal < 14) return 0;
-  if (signal > 14) return 4;
-  if (signal > 11) return 3;
-  if (signal > 7) return 2;
-  if (signal > 4) return 1;
-  return 0;
-}
-
-function ContributionGrid() {
-  const weeks = Array.from({ length: 52 }, (_, week) =>
-    Array.from({ length: 7 }, (_, day) => getContributionLevel(week, day))
-  );
+    return { ...item, x, y };
+  });
+  const linePath = points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+    .join(" ");
+  const peak = points[peakIndex];
 
   return (
-    <div className="overflow-x-auto pb-2">
-      <div className="min-w-[940px]">
-        <div className="grid grid-cols-12 gap-3 px-1 text-sm font-semibold text-[var(--foreground)]/80">
-          {months.map((month) => (
-            <span key={month}>{month}</span>
-          ))}
+    <div className="rounded-[8px] border border-[var(--border)] bg-[var(--github-card-bg)] p-6 shadow-sm reveal lg:p-8">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <TrendingUp size={22} className="text-[var(--foreground)]" />
+          <h3 className="text-lg font-semibold text-[var(--foreground)] sm:text-xl">
+            Monthly Commit Activity
+          </h3>
         </div>
+        <span className="shrink-0 text-sm font-semibold text-[var(--muted)] sm:text-base">
+          Last 12 months
+        </span>
+      </div>
 
-        <div className="mt-2 flex gap-1.5">
-          {weeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="grid gap-1.5">
-              {week.map((level, dayIndex) => (
-                <span
-                  key={`${weekIndex}-${dayIndex}`}
-                  className={`h-4 w-4 rounded-[3px] ${heatLevels[level]}`}
-                  aria-label={`${level} contribution level`}
+      <div className="mt-6 overflow-x-auto">
+        <svg
+          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+          className="h-[260px] min-w-[760px] overflow-visible"
+          role="img"
+          aria-label="Monthly commit activity for the last 12 months"
+        >
+          <line
+            x1={paddingX}
+            y1={baselineY}
+            x2={chartWidth - paddingX}
+            y2={baselineY}
+            stroke="var(--github-chart-axis)"
+            strokeWidth="2"
+          />
+          <path
+            d={linePath}
+            fill="none"
+            stroke="var(--accent)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="4"
+          />
+          {points.map((point, index) => {
+            const isPeak = index === peakIndex;
+
+            return (
+              <g key={point.month}>
+                <circle
+                  cx={point.x}
+                  cy={point.y}
+                  r={isPeak ? 8 : 4.5}
+                  fill="var(--accent)"
+                  stroke="var(--github-card-bg)"
+                  strokeWidth={isPeak ? 4 : 2}
                 />
-              ))}
-            </div>
-          ))}
-        </div>
+                <text
+                  x={point.x}
+                  y={baselineY + 36}
+                  textAnchor="middle"
+                  className="fill-[var(--muted)] text-sm font-semibold"
+                >
+                  {point.month}
+                </text>
+              </g>
+            );
+          })}
+          <text
+            x={peak.x}
+            y={peak.y - 14}
+            textAnchor="middle"
+            className="fill-[var(--foreground)] text-base font-bold"
+          >
+            {peak.value}
+          </text>
+        </svg>
+      </div>
+
+      <div className="mt-1 flex justify-end">
+        <button
+          type="button"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--foreground)] shadow-lg shadow-black/10 transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+          aria-label="Scroll to details"
+        >
+          <ArrowDown size={20} />
+        </button>
       </div>
     </div>
   );
@@ -149,29 +205,7 @@ export default function GitHubActivity() {
           </h2>
         </div>
 
-        <div className="rounded-[8px] border border-[var(--border)] bg-[var(--github-card-bg)] p-6 shadow-sm reveal lg:p-8">
-          <ContributionGrid />
-          <div className="mt-4 h-5 rounded-[4px] bg-[var(--github-scroll-bg)] px-3">
-            <div className="flex h-full items-center gap-2">
-              <span className="h-0 w-0 border-y-[5px] border-r-[7px] border-y-transparent border-r-[var(--muted)]/50" />
-              <div className="h-2 flex-1 rounded-full bg-[var(--github-scroll-track)]" />
-              <span className="h-0 w-0 border-y-[5px] border-l-[7px] border-y-transparent border-l-[var(--muted)]/50" />
-            </div>
-          </div>
-          <div className="mt-5 flex flex-col gap-4 text-lg font-medium text-[var(--foreground)] sm:flex-row sm:items-center sm:justify-between">
-            <span>329 contributions in the last year</span>
-            <div className="flex items-center gap-2 text-base text-[var(--foreground)]/80">
-              <span>Less</span>
-              {heatLevels.map((levelClass, level) => (
-                <span
-                  key={level}
-                  className={`h-4 w-4 rounded-[3px] ${levelClass}`}
-                />
-              ))}
-              <span>More</span>
-            </div>
-          </div>
-        </div>
+        <MonthlyCommitChart />
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
           <div className="rounded-[8px] border border-[var(--border)] bg-[var(--surface)]/72 p-6 shadow-sm backdrop-blur-sm reveal lg:p-10">

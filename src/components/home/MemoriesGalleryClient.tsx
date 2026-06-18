@@ -25,9 +25,9 @@ const MODE_BUTTONS: Array<{
   mode: GalleryMode;
   icon: ReactNode;
 }> = [
-  { label: "Đều nhau", mode: "even", icon: <Grid3X3 size={16} /> },
-  { label: "Rộng", mode: "wide", icon: <Maximize2 size={16} /> },
-  { label: "Nhỏ", mode: "small", icon: <Minimize2 size={16} /> },
+  { label: "Balanced", mode: "even", icon: <Grid3X3 size={16} /> },
+  { label: "Wide", mode: "wide", icon: <Maximize2 size={16} /> },
+  { label: "Compact", mode: "small", icon: <Minimize2 size={16} /> },
 ];
 
 function shuffleImages(images: string[], seed: number) {
@@ -107,8 +107,8 @@ export default function MemoriesGalleryClient({
               </span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-[var(--muted)] sm:text-lg">
-              Những khoảnh khắc đáng nhớ được gom lại thành một góc ảnh nhỏ
-              trong portfolio.
+              A curated collection of memorable moments, gathered into a
+              personal gallery within this portfolio.
             </p>
           </div>
 
@@ -135,7 +135,7 @@ export default function MemoriesGalleryClient({
               className="inline-flex h-11 min-w-[8.5rem] items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--border)] bg-[var(--surface)]/70 px-4 text-sm font-semibold text-[var(--muted)] transition-all hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
             >
               <Shuffle size={16} />
-              Xáo trộn
+              Shuffle
             </button>
           </div>
         </div>

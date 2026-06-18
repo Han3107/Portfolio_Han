@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import Header from "@/components/layout/Header";
+import CuteChickenCursor from "@/components/ui/CuteChickenCursor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,20 +32,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <Script id="theme-init" strategy="beforeInteractive">
-        {`
-          (() => {
-            try {
-              const storedTheme = localStorage.getItem("theme");
-              const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-              const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : systemTheme;
-              document.documentElement.dataset.theme = theme;
-            } catch {
-              document.documentElement.dataset.theme = "light";
-            }
-          })();
-        `}
-      </Script>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (() => {
+                try {
+                  const storedTheme = localStorage.getItem("theme");
+                  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                  const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : systemTheme;
+                  document.documentElement.dataset.theme = theme;
+                } catch {
+                  document.documentElement.dataset.theme = "light";
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen">
         <div className="flex min-h-screen flex-col">
           <Header />
@@ -53,6 +57,7 @@ export default function RootLayout({
             <main>{children}</main>
           </div>
         </div>
+        <CuteChickenCursor />
       </body>
     </html>
   );

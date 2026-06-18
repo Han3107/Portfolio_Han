@@ -258,6 +258,16 @@ body {
   }
 }
 
+@keyframes chicken-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(4deg);
+  }
+}
+
 /* Animation Utility Classes */
 .animate-fade-in-up {
   animation: fade-in-up 0.7s ease-out both;
@@ -487,6 +497,135 @@ body {
   padding: 1rem 0;
   white-space: nowrap;
   will-change: transform;
+}
+
+/* Cursor Companion */
+.cute-chicken-cursor {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+html,
+body,
+body *,
+body *::before,
+body *::after {
+  cursor: url("/chicken-cursor.png") 16 16, auto !important;
+}
+
+.cute-chicken-cursor__ring {
+  border: 1px solid var(--accent-cyan);
+  border-radius: 9999px;
+  height: 42px;
+  left: 50%;
+  opacity: 0.55;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+}
+
+.cute-chicken-cursor__bird {
+  animation: chicken-bob 1.1s ease-in-out infinite;
+  height: 32px;
+  position: relative;
+  transform-origin: center bottom;
+  width: 32px;
+}
+
+.cute-chicken-cursor__body,
+.cute-chicken-cursor__head,
+.cute-chicken-cursor__wing,
+.cute-chicken-cursor__comb,
+.cute-chicken-cursor__eye,
+.cute-chicken-cursor__beak,
+.cute-chicken-cursor__leg {
+  position: absolute;
+}
+
+.cute-chicken-cursor__body {
+  background: linear-gradient(145deg, #ffe06b, #ffb23f);
+  border: 2px solid rgba(23, 23, 31, 0.12);
+  border-radius: 56% 48% 50% 54%;
+  bottom: 5px;
+  height: 20px;
+  left: 6px;
+  width: 22px;
+}
+
+.cute-chicken-cursor__head {
+  background: linear-gradient(145deg, #fff2a5, #ffc85b);
+  border: 2px solid rgba(23, 23, 31, 0.1);
+  border-radius: 50%;
+  height: 15px;
+  left: 12px;
+  top: 4px;
+  width: 15px;
+}
+
+.cute-chicken-cursor__wing {
+  background: rgba(255, 143, 112, 0.85);
+  border-radius: 60% 45% 60% 45%;
+  height: 11px;
+  left: 8px;
+  top: 15px;
+  transform: rotate(-24deg);
+  width: 11px;
+}
+
+.cute-chicken-cursor__comb {
+  background: var(--accent);
+  border-radius: 9999px 9999px 4px 4px;
+  box-shadow:
+    5px 1px 0 var(--accent),
+    9px 2px 0 var(--accent);
+  height: 7px;
+  left: 11px;
+  top: 0;
+  width: 5px;
+}
+
+.cute-chicken-cursor__eye {
+  background: #17171f;
+  border-radius: 50%;
+  height: 3px;
+  left: 22px;
+  top: 9px;
+  width: 3px;
+}
+
+.cute-chicken-cursor__beak {
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid #ff7a2f;
+  border-top: 3px solid transparent;
+  left: 27px;
+  top: 12px;
+}
+
+.cute-chicken-cursor__leg {
+  background: #ff7a2f;
+  bottom: 1px;
+  height: 6px;
+  width: 2px;
+}
+
+.cute-chicken-cursor__leg--left {
+  left: 13px;
+}
+
+.cute-chicken-cursor__leg--right {
+  left: 21px;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cute-chicken-cursor {
+    display: none;
+  }
 }
 
 /* Responsive Helpers */

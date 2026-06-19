@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { ArrowRight, Bug } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type Particle = {
   alpha: number;
@@ -136,6 +137,8 @@ function FloatingParticles() {
 }
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
       <div className="absolute inset-0 z-0">
@@ -162,16 +165,14 @@ export default function HeroSection() {
             style={{ animationDelay: "0.1s" }}
           >
             <Bug size={16} />
-            Tester Intern
+            {t.hero.role}
           </p>
 
           <p
             className="animate-fade-in-up mt-7 max-w-[560px] text-base font-medium leading-8 text-[var(--muted)] sm:text-lg"
             style={{ animationDelay: "0.2s" }}
           >
-            Information Technology student with a strong learning mindset and
-            basic knowledge of software testing. Seeking a Tester Internship to
-            apply academic knowledge in real-world projects.
+            {t.hero.intro}
           </p>
 
           <p
@@ -179,7 +180,7 @@ export default function HeroSection() {
             style={{ animationDelay: "0.25s" }}
           >
             <span className="animate-underline-slide inline-block">
-              Writing clean & efficient code
+              {t.hero.note}
             </span>
           </p>
 
@@ -188,10 +189,10 @@ export default function HeroSection() {
             style={{ animationDelay: "0.3s" }}
           >
             <Link href="/contact" className="btn-primary">
-              Hire Portfolio
+              {t.hero.hire}
             </Link>
             <Link href="/projects" className="btn-secondary group">
-              Explore Work
+              {t.hero.explore}
               <ArrowRight
                 size={18}
                 className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
@@ -202,7 +203,7 @@ export default function HeroSection() {
 
         <div className="relative flex min-h-[340px] items-center justify-center lg:min-h-[520px] lg:justify-center">
           <div className="animate-float-text pointer-events-none absolute left-[-8%] top-[36%] hidden -translate-y-1/2 whitespace-nowrap text-[64px] font-black leading-none text-[var(--accent)] opacity-[0.18] lg:block">
-            TESTER
+            {t.hero.leftWord}
           </div>
 
           <div
@@ -213,7 +214,7 @@ export default function HeroSection() {
             <div className="relative h-[270px] w-[270px] overflow-hidden rounded-full border-[5px] border-[var(--portrait-ring)] bg-[var(--accent-warm)] shadow-2xl shadow-[var(--accent)]/20 sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]">
               <Image
                 src="/han.jpg"
-                alt="Han Han portrait"
+                alt={t.hero.portraitAlt}
                 fill
                 priority
                 unoptimized
@@ -224,7 +225,7 @@ export default function HeroSection() {
           </div>
 
           <div className="animate-float-text pointer-events-none absolute right-[-8%] top-[36%] hidden -translate-y-1/2 whitespace-nowrap text-[64px] font-black leading-none text-[var(--accent)] opacity-[0.18] lg:block">
-            INTERN
+            {t.hero.rightWord}
           </div>
         </div>
       </div>

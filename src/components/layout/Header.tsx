@@ -6,6 +6,8 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import Logo from "@/components/ui/Logo";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import LanguageToggle from "@/components/ui/LanguageToggle";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const handleViewCV = () => {
   window.open("/CTH_CV_Tester.pdf?v=20260616", "_blank");
@@ -13,6 +15,7 @@ const handleViewCV = () => {
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <header
@@ -40,7 +43,7 @@ export default function Header() {
                   href={link.href}
                   className="flex items-center gap-1 transition-colors hover:text-[var(--accent-cyan)] no-underline text-[var(--foreground)]"
                 >
-                  {link.label}
+                  {t.nav[link.label]}
                   {"hasDropdown" in link && link.hasDropdown && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +68,10 @@ export default function Header() {
         {/* Right side */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
+          <LanguageToggle />
           <div className="hidden lg:block">
             <button onClick={handleViewCV} className="btn-primary">
-              View Resume
+              {t.common.viewResume}
             </button>
           </div>
           <button
@@ -98,7 +102,7 @@ export default function Header() {
                     className="block py-2 text-lg font-semibold text-[var(--foreground)] no-underline hover:text-[var(--accent-cyan)] transition-colors"
                     onClick={() => setMobileOpen(false)}
                   >
-                    {link.label}
+                    {t.nav[link.label]}
                   </Link>
                 </li>
               ))}
@@ -110,7 +114,7 @@ export default function Header() {
                   }}
                   className="btn-primary w-full text-center"
                 >
-                  View Resume
+                  {t.common.viewResume}
                 </button>
               </li>
             </ul>

@@ -1,48 +1,59 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Blog - Han Han Portfolio",
-  description: "Read articles about software testing, QA best practices, and tech insights.",
-};
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const posts = [
   {
     title: "Getting Started with Next.js 15: What's New",
+    titleVi: "Bắt đầu với Next.js 15: Có gì mới",
     excerpt: "Explore the latest features in Next.js 15 including the new App Router improvements, server components, and performance optimizations.",
+    excerptVi: "Tìm hiểu các tính năng mới trong Next.js 15 như cải tiến App Router, server components và tối ưu hiệu năng.",
     date: "2026-05-20",
     readTime: "5 min read",
+    readTimeVi: "5 phút đọc",
     category: "Next.js",
     slug: "#",
   },
   {
     title: "Building a Design System with TailwindCSS",
+    titleVi: "Xây dựng Design System với TailwindCSS",
     excerpt: "Learn how to create a consistent and reusable design system using TailwindCSS, custom properties, and component patterns.",
+    excerptVi: "Cách tạo design system nhất quán, có thể tái sử dụng bằng TailwindCSS, custom properties và component patterns.",
     date: "2026-04-15",
     readTime: "8 min read",
+    readTimeVi: "8 phút đọc",
     category: "CSS",
     slug: "#",
   },
   {
     title: "TypeScript Best Practices for React Developers",
+    titleVi: "Các thực hành TypeScript tốt cho React Developer",
     excerpt: "Master TypeScript patterns that will make your React code more type-safe, maintainable, and developer-friendly.",
+    excerptVi: "Nắm các pattern TypeScript giúp code React an toàn kiểu dữ liệu hơn, dễ bảo trì và thân thiện với developer.",
     date: "2026-03-10",
     readTime: "6 min read",
+    readTimeVi: "6 phút đọc",
     category: "TypeScript",
     slug: "#",
   },
   {
     title: "Understanding RESTful API Design Principles",
+    titleVi: "Hiểu nguyên tắc thiết kế RESTful API",
     excerpt: "A comprehensive guide to designing clean, intuitive, and scalable REST APIs following industry best practices.",
+    excerptVi: "Hướng dẫn thiết kế REST API rõ ràng, dễ dùng và có khả năng mở rộng theo các thực hành phổ biến.",
     date: "2026-02-22",
     readTime: "7 min read",
+    readTimeVi: "7 phút đọc",
     category: "Backend",
     slug: "#",
   },
 ];
 
 export default function BlogPage() {
+  const { locale, t } = useLanguage();
+
   return (
     <>
       {/* Hero */}
@@ -50,15 +61,15 @@ export default function BlogPage() {
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[var(--accent)]/15 rounded-full blur-[100px]" />
         <div className="relative mx-auto max-w-4xl px-6 py-20 lg:py-32 text-center">
-          <p className="section-label">Blog</p>
+          <p className="section-label">{t.blog.label}</p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-bold text-[var(--foreground)]">
-            Thoughts &{" "}
+            {t.blog.titleA}{" "}
             <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-cyan)] bg-clip-text text-transparent">
-              Insights
+              {t.blog.titleB}
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-[var(--muted)] leading-7">
-            Writing about software testing, QA methodologies, and everything in between.
+            {t.blog.description}
           </p>
         </div>
       </section>
@@ -86,22 +97,22 @@ export default function BlogPage() {
                     
                     <h2 className="mt-3 text-xl font-semibold text-[var(--foreground)] group-hover:text-[var(--accent-cyan)] transition-colors">
                       <Link href={post.slug} className="no-underline text-inherit">
-                        {post.title}
+                        {locale === "vi" ? post.titleVi : post.title}
                       </Link>
                     </h2>
                     
                     <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                      {post.excerpt}
+                      {locale === "vi" ? post.excerptVi : post.excerpt}
                     </p>
                     
                     <div className="mt-4 flex items-center gap-4 text-xs text-[var(--muted)]">
                       <span className="flex items-center gap-1">
                         <Calendar size={14} />
-                        {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                        {new Date(post.date).toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", { month: "short", day: "numeric", year: "numeric" })}
                       </span>
                       <span className="flex items-center gap-1">
                         <Clock size={14} />
-                        {post.readTime}
+                        {locale === "vi" ? post.readTimeVi : post.readTime}
                       </span>
                     </div>
                   </div>

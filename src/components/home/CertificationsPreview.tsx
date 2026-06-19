@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Award, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const certifications = [
   {
@@ -12,10 +13,14 @@ const certifications = [
     expiryDate: "12/02/2029",
     description:
       "Certified in having demonstrated the knowledge, skills, and basic competencies needed to use Google AI.",
+    descriptionVi:
+      "Chứng nhận đã thể hiện kiến thức, kỹ năng và năng lực cơ bản cần thiết để sử dụng Google AI.",
   },
 ];
 
 export default function CertificationsPreview() {
+  const { locale, t } = useLanguage();
+
   return (
     <section className="relative border-b border-[var(--border)] bg-[var(--background)] py-16 lg:py-28 overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-25" />
@@ -24,16 +29,15 @@ export default function CertificationsPreview() {
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mb-10 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between reveal">
           <div className="max-w-2xl">
-            <p className="section-label">Achievements</p>
+            <p className="section-label">{t.certifications.label}</p>
             <h2 className="mt-3 text-4xl font-bold leading-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl">
-              Professional{" "}
+              {t.certifications.titlePrefix}{" "}
               <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-cyan)] bg-clip-text text-transparent">
-                Certifications
+                {t.certifications.title}
               </span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-[var(--muted)] sm:text-lg">
-              Recognized certifications demonstrating expertise and commitment
-              to professional development.
+              {t.certifications.previewDescription}
             </p>
           </div>
 
@@ -41,7 +45,7 @@ export default function CertificationsPreview() {
             href="/certifications"
             className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)]/70 px-6 py-3 text-sm font-semibold text-[var(--foreground)] transition-all hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
           >
-            View All
+            {t.certifications.viewAll}
             <ArrowRight size={16} />
           </Link>
         </div>
@@ -64,17 +68,17 @@ export default function CertificationsPreview() {
                     {cert.issuer}
                   </p>
                   <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
-                    {cert.description}
+                    {locale === "vi" ? cert.descriptionVi : cert.description}
                   </p>
                   <div className="mt-4 flex gap-4 text-sm">
                     <div>
-                      <span className="text-[var(--muted)]">Issued: </span>
+                      <span className="text-[var(--muted)]">{t.certifications.issued} </span>
                       <span className="font-semibold text-[var(--foreground)]">
                         {cert.issuedDate}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[var(--muted)]">Valid Until: </span>
+                      <span className="text-[var(--muted)]">{t.certifications.validUntil} </span>
                       <span className="font-semibold text-[var(--foreground)]">
                         {cert.expiryDate}
                       </span>

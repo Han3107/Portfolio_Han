@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import { FEATURED_PROJECTS } from "@/lib/constants";
 import { ExternalLink } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 function GithubIcon({ size = 18 }: { size?: number }) {
   return (
@@ -10,30 +12,31 @@ function GithubIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-export const metadata: Metadata = {
-  title: "Projects - Han Han Portfolio",
-  description: "Browse my portfolio of software testing projects showcasing QA methodologies.",
-};
-
 const allProjects = [
   ...FEATURED_PROJECTS,
   {
     title: "Portfolio_Han",
     description: "A TypeScript portfolio website presenting personal information, skills, projects, and contact details.",
+    descriptionVi: "Website portfolio TypeScript giới thiệu thông tin cá nhân, kỹ năng, dự án và thông tin liên hệ.",
     tags: ["TypeScript", "Next.js", "Portfolio"],
+    tagsVi: ["TypeScript", "Next.js", "Portfolio"],
     image: "/images/projects/portfolio.jpg",
     href: "https://github.com/Han3107/Portfolio_Han",
   },
   {
     title: "WEB_CHAT",
     description: "A Java chat application project exploring messaging flows, client-server concepts, and real-time communication patterns.",
+    descriptionVi: "Dự án ứng dụng chat bằng Java, tìm hiểu luồng nhắn tin, mô hình client-server và giao tiếp thời gian thực.",
     tags: ["Java", "Chat App", "Networking"],
+    tagsVi: ["Java", "Chat App", "Networking"],
     image: "/images/projects/chat.jpg",
     href: "https://github.com/Han3107/WEB_CHAT",
   },
 ];
 
 export default function ProjectsPage() {
+  const { locale, t } = useLanguage();
+
   return (
     <>
       {/* Hero */}
@@ -41,16 +44,15 @@ export default function ProjectsPage() {
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[var(--accent-warm)]/10 rounded-full blur-[100px]" />
         <div className="relative mx-auto max-w-4xl px-6 py-20 lg:py-32 text-center">
-          <p className="section-label">Projects</p>
+          <p className="section-label">{t.projectsPage.label}</p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-bold text-[var(--foreground)]">
-            My{" "}
+            {t.projectsPage.titleA}{" "}
             <span className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent)] bg-clip-text text-transparent">
-              Creative Work
+              {t.projectsPage.titleB}
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-[var(--muted)] leading-7">
-            A collection of projects that showcase my skills in software testing,
-            from manual testing to automation solutions.
+            {t.projectsPage.description}
           </p>
         </div>
       </section>
@@ -67,6 +69,12 @@ export default function ProjectsPage() {
                     : [{ label: "GitHub", href: project.href }];
                 const projectTitle =
                   "displayTitle" in project ? project.displayTitle : project.title;
+                const projectDescription =
+                  locale === "vi" && "descriptionVi" in project
+                    ? project.descriptionVi
+                    : project.description;
+                const projectTags =
+                  locale === "vi" && "tagsVi" in project ? project.tagsVi : project.tags;
 
                 return (
                   <article
@@ -86,7 +94,7 @@ export default function ProjectsPage() {
                             href={project.liveHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Open ${projectTitle} live site`}
+                            aria-label={`${t.common.openLive}: ${projectTitle}`}
                             className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]"
                           >
                             <ExternalLink size={18} />
@@ -98,7 +106,7 @@ export default function ProjectsPage() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Open ${projectTitle} ${link.label} repository`}
+                            aria-label={`${t.common.openRepo}: ${projectTitle} ${link.label}`}
                             className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]"
                             style={{ transitionDelay: `${("liveHref" in project && project.liveHref ? 1 : 0) * 100 + linkIndex * 100}ms` }}
                           >
@@ -119,10 +127,10 @@ export default function ProjectsPage() {
                         {projectTitle}
                       </a>
                       <p className="mt-2 text-sm leading-relaxed text-[var(--muted)] line-clamp-3">
-                        {project.description}
+                        {projectDescription}
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
+                        {projectTags.map((tag) => (
                           <span key={tag} className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs text-[var(--muted)]">
                             {tag}
                           </span>

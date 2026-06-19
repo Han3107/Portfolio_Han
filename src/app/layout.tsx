@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import CuteChickenCursor from "@/components/ui/CuteChickenCursor";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -51,13 +52,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen">
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <div className="flex-1">
-            <main>{children}</main>
+        <LanguageProvider>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <div className="flex-1">
+              <main>{children}</main>
+            </div>
           </div>
-        </div>
-        <CuteChickenCursor />
+          <CuteChickenCursor />
+        </LanguageProvider>
       </body>
     </html>
   );

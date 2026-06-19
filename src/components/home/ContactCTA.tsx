@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { Mail, MessageSquare, Send } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function ContactCTA() {
   useScrollReveal();
+  const { t } = useLanguage();
 
   return (
     <section className="relative bg-[var(--background)] py-16 lg:py-28 overflow-hidden">
@@ -19,19 +21,18 @@ export default function ContactCTA() {
           <MessageSquare size={28} className="text-[var(--foreground)]" />
         </div>
 
-        <p className="section-label">Get In Touch</p>
+        <p className="section-label">{t.contactCta.label}</p>
         <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-[var(--foreground)]">
-          Let&apos;s Work Together
+          {t.contactCta.title}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-[var(--muted)] leading-7">
-          I&apos;m always open to discussing new projects, creative ideas, or
-          opportunities to be part of your vision. Feel free to reach out!
+          {t.contactCta.description}
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/contact" className="btn-primary">
             <Mail size={18} className="mr-2" />
-            Send a Message
+            {t.contactCta.button}
           </Link>
           <a href="mailto:caothihan05@gmail.com" className="btn-secondary group">
             <Send size={16} className="mr-2" />

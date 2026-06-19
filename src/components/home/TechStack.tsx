@@ -2,6 +2,7 @@
 
 import { TECH_STACK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 function TechBadge({
   name,
@@ -36,6 +37,7 @@ function TechBadge({
 
 export default function TechStack() {
   useScrollReveal();
+  const { t } = useLanguage();
 
   // Duplicate items for seamless infinite scroll
   const items = [...TECH_STACK, ...TECH_STACK];
@@ -48,14 +50,14 @@ export default function TechStack() {
       <div className="mx-auto w-full max-w-7xl px-6 mb-12">
         <div className="text-center flex flex-col items-center reveal">
           <div className="max-w-2xl">
-            <p className="section-label">My Tech Stack</p>
+            <p className="section-label">{t.techStack.label}</p>
             <div className="mt-2 flex items-center justify-center gap-4">
               <h2 className="section-title">
-                Tools & Technologies I Work With
+                {t.techStack.title}
               </h2>
             </div>
             <p className="section-desc">
-              A comprehensive list of technologies I use to bring ideas to life.
+              {t.techStack.description}
             </p>
           </div>
         </div>

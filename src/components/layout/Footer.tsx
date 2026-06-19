@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constants";
 import { Heart } from "lucide-react";
-import Logo from "@/components/ui/Logo";
 
 /* Custom SVG icons for social brands (removed from lucide-react v1+) */
 function GithubIcon() {

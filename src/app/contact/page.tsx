@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 /* Custom SVG icons for social brands */
 function GithubIcon() {
@@ -29,6 +30,7 @@ function FacebookIcon() {
 }
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,7 +40,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! I will get back to you soon.");
+    alert(t.contactPage.success);
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -49,15 +51,15 @@ export default function ContactPage() {
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[var(--accent-cyan)]/10 rounded-full blur-[100px]" />
         <div className="relative mx-auto max-w-4xl px-6 py-20 lg:py-32 text-center">
-          <p className="section-label">Contact</p>
+          <p className="section-label">{t.contactPage.label}</p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-bold text-[var(--foreground)]">
-            Let&apos;s{" "}
+            {t.contactPage.titleA}{" "}
             <span className="bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent)] bg-clip-text text-transparent">
-              Connect
+              {t.contactPage.titleB}
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-[var(--muted)] leading-7">
-            Have a project in mind or just want to say hello? I&apos;d love to hear from you.
+            {t.contactPage.description}
           </p>
         </div>
       </section>
@@ -68,10 +70,9 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
             {/* Contact Info */}
             <div>
-              <h2 className="text-2xl font-semibold text-[var(--foreground)]">Get in Touch</h2>
+              <h2 className="text-2xl font-semibold text-[var(--foreground)]">{t.contactPage.getInTouch}</h2>
               <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
-                Feel free to reach out through any of the channels below.
-                I typically respond within 24 hours.
+                {t.contactPage.info}
               </p>
 
               <div className="mt-8 flex flex-col gap-5">
@@ -80,7 +81,7 @@ export default function ContactPage() {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-[var(--muted)]">Email</p>
+                    <p className="text-sm text-[var(--muted)]">{t.contactPage.email}</p>
                     <p className="text-[var(--foreground)] font-medium">caothihan05@gmail.com</p>
                   </div>
                 </div>
@@ -90,7 +91,7 @@ export default function ContactPage() {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-[var(--muted)]">Phone</p>
+                    <p className="text-sm text-[var(--muted)]">{t.contactPage.phone}</p>
                     <p className="text-[var(--foreground)] font-medium">0392813657</p>
                   </div>
                 </div>
@@ -100,7 +101,7 @@ export default function ContactPage() {
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-[var(--muted)]">Location</p>
+                    <p className="text-sm text-[var(--muted)]">{t.contactPage.location}</p>
                     <p className="text-[var(--foreground)] font-medium">Hai Chau, Da Nang</p>
                   </div>
                 </div>
@@ -108,7 +109,7 @@ export default function ContactPage() {
 
               {/* Social */}
               <div className="mt-10">
-                <p className="text-sm font-semibold text-[var(--muted)] uppercase tracking-wider">Follow Me</p>
+                <p className="text-sm font-semibold text-[var(--muted)] uppercase tracking-wider">{t.contactPage.follow}</p>
                 <div className="mt-3 flex gap-3">
                   {[
                     { icon: <GithubIcon />, href: "https://github.com/Han3107" },
@@ -134,7 +135,7 @@ export default function ContactPage() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-2 block text-sm font-medium text-[var(--muted)]">
-                    Full Name
+                    {t.contactPage.fullName}
                   </label>
                   <input
                     id="name"
@@ -143,12 +144,12 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none transition-colors focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]"
-                    placeholder="John Doe"
+                    placeholder={t.contactPage.namePlaceholder}
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="mb-2 block text-sm font-medium text-[var(--muted)]">
-                    Email Address
+                    {t.contactPage.emailAddress}
                   </label>
                   <input
                     id="email"
@@ -157,14 +158,14 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none transition-colors focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]"
-                    placeholder="john@example.com"
+                    placeholder={t.contactPage.emailPlaceholder}
                   />
                 </div>
               </div>
 
               <div className="mt-5">
                 <label htmlFor="subject" className="mb-2 block text-sm font-medium text-[var(--muted)]">
-                  Subject
+                  {t.contactPage.subject}
                 </label>
                 <input
                   id="subject"
@@ -173,13 +174,13 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none transition-colors focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]"
-                  placeholder="Project Inquiry"
+                  placeholder={t.contactPage.subjectPlaceholder}
                 />
               </div>
 
               <div className="mt-5">
                 <label htmlFor="message" className="mb-2 block text-sm font-medium text-[var(--muted)]">
-                  Message
+                  {t.contactPage.message}
                 </label>
                 <textarea
                   id="message"
@@ -188,7 +189,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full resize-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none transition-colors focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]"
-                  placeholder="Tell me about your project..."
+                  placeholder={t.contactPage.messagePlaceholder}
                 />
               </div>
 
@@ -197,7 +198,7 @@ export default function ContactPage() {
                 className="btn-primary mt-6 w-full sm:w-auto"
               >
                 <Send size={16} className="mr-2" />
-                Send Message
+                {t.contactPage.submit}
               </button>
             </form>
           </div>

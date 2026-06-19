@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { Award, X, Download, ExternalLink } from "lucide-react";
+import { Award, Download, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 interface Certification {
   id: number;
@@ -22,8 +21,7 @@ interface CertificationsClientProps {
 export default function CertificationsClient({
   certifications,
 }: CertificationsClientProps) {
-  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
-  const [fullscreenPDF, setFullscreenPDF] = useState(false);
+  const { locale, t } = useLanguage();
 
   const handleDownload = (certificateFile: string) => {
     const link = document.createElement("a");
@@ -82,13 +80,13 @@ export default function CertificationsClient({
               {/* Dates */}
               <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border)] pt-4">
                 <div className="flex justify-between text-sm">
-                  <span className="text-[var(--muted)]">Issued:</span>
+                  <span className="text-[var(--muted)]">{t.certifications.issued}</span>
                   <span className="font-semibold text-[var(--foreground)]">
                     {cert.issuedDate}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[var(--muted)]">Valid Until:</span>
+                  <span className="text-[var(--muted)]">{t.certifications.validUntil}</span>
                   <span className="font-semibold text-[var(--foreground)]">
                     {cert.expiryDate}
                   </span>
@@ -102,40 +100,20 @@ export default function CertificationsClient({
                   className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)]/70 px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition-all hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
                 >
                   <ExternalLink size={16} />
-                  View
+                  {locale === "vi" ? "Xem" : "View"}
                 </button>
                 <button
                   onClick={() => handleDownload(cert.certificateFile)}
                   className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-[var(--accent)]/30"
                 >
                   <Download size={16} />
-                  Download
+                  {locale === "vi" ? "Tải xuống" : "Download"}
                 </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      {/* PDF Viewer Modal */}
-      {fullscreenPDF && selectedCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm">
-          <button
-            onClick={() => setFullscreenPDF(false)}
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-            aria-label="Close PDF viewer"
-          >
-            <X size={22} />
-          </button>
-          <div className="relative w-full max-w-4xl h-[90vh] rounded-2xl overflow-hidden bg-white">
-            <iframe
-              src={selectedCert.certificateFile}
-              className="w-full h-full"
-              title={selectedCert.title}
-            />
-          </div>
-        </div>
-      )}
     </>
   );
 }

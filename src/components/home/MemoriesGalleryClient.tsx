@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type GalleryMode = "even" | "wide" | "small";
 
@@ -21,13 +22,13 @@ interface MemoriesGalleryClientProps {
 }
 
 const MODE_BUTTONS: Array<{
-  label: string;
+  labelKey: "balanced" | "wide" | "compact";
   mode: GalleryMode;
   icon: ReactNode;
 }> = [
-  { label: "Balanced", mode: "even", icon: <Grid3X3 size={16} /> },
-  { label: "Wide", mode: "wide", icon: <Maximize2 size={16} /> },
-  { label: "Compact", mode: "small", icon: <Minimize2 size={16} /> },
+  { labelKey: "balanced", mode: "even", icon: <Grid3X3 size={16} /> },
+  { labelKey: "wide", mode: "wide", icon: <Maximize2 size={16} /> },
+  { labelKey: "compact", mode: "small", icon: <Minimize2 size={16} /> },
 ];
 
 function shuffleImages(images: string[], seed: number) {
@@ -46,6 +47,7 @@ export default function MemoriesGalleryClient({
   const [mode, setMode] = useState<GalleryMode>("even");
   const [shuffleSeed, setShuffleSeed] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   useScrollReveal();
 
@@ -99,16 +101,15 @@ export default function MemoriesGalleryClient({
       <div className="relative mx-auto max-w-7xl px-10">
         <div className="mb-10 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between reveal">
           <div className="max-w-2xl">
-            <p className="section-label">Gallery</p>
+            <p className="section-label">{t.memories.label}</p>
             <h2 className="mt-3 text-4xl font-bold leading-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl">
-              Moments &{" "}
+              {t.memories.titleA}{" "}
               <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-cyan)] bg-clip-text text-transparent">
-                memories.
+                {t.memories.titleB}
               </span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-[var(--muted)] sm:text-lg">
-              A curated collection of memorable moments, gathered into a
-              personal gallery within this portfolio.
+              {t.memories.description}
             </p>
           </div>
 
@@ -126,7 +127,7 @@ export default function MemoriesGalleryClient({
                 aria-pressed={mode === item.mode}
               >
                 {item.icon}
-                {item.label}
+                {t.memories[item.labelKey]}
               </button>
             ))}
             <button
@@ -135,7 +136,7 @@ export default function MemoriesGalleryClient({
               className="inline-flex h-11 min-w-[8.5rem] items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--border)] bg-[var(--surface)]/70 px-4 text-sm font-semibold text-[var(--muted)] transition-all hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
             >
               <Shuffle size={16} />
-              Shuffle
+              {t.memories.shuffle}
             </button>
           </div>
         </div>
@@ -158,7 +159,7 @@ export default function MemoriesGalleryClient({
               >
                 <Image
                   src={image}
-                  alt={`Memory ${index + 1}`}
+                  alt={`${t.memories.imageAlt} ${index + 1}`}
                   fill
                   sizes={
                     mode === "small"
@@ -183,7 +184,7 @@ export default function MemoriesGalleryClient({
             type="button"
             onClick={() => setActiveIndex(null)}
             className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-            aria-label="Close gallery image"
+            aria-label={t.memories.close}
           >
             <X size={22} />
           </button>
@@ -197,14 +198,14 @@ export default function MemoriesGalleryClient({
               )
             }
             className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:flex"
-            aria-label="Previous image"
+            aria-label={t.memories.previous}
           >
             <ChevronLeft size={26} />
           </button>
           <div className="relative h-[82vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-black">
             <Image
               src={activeImage}
-              alt={`Memory ${activeIndex + 1}`}
+              alt={`${t.memories.imageAlt} ${activeIndex + 1}`}
               fill
               sizes="100vw"
               className="object-contain"
@@ -221,7 +222,7 @@ export default function MemoriesGalleryClient({
               )
             }
             className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:flex"
-            aria-label="Next image"
+            aria-label={t.memories.next}
           >
             <ChevronRight size={26} />
           </button>

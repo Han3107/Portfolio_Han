@@ -119,6 +119,12 @@ export const TECH_STACK: TechItem[] = [
     icon: "M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.186.186 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.186.186 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.186.186 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.186.186 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.186.186 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.186.186 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.186.186 0 00.185-.185V9.006a.186.186 0 00-.185-.186H5.136a.186.186 0 00-.186.185v1.888c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.185.185v1.888c0 .102.083.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.687 11.687 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.028 12.028 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z",
   },
   {
+    name: "Postman",
+    level: "Intermediate",
+    color: "#FF6C37",
+    icon: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m5.457 8.807-6.014 6.014-.383-.383 6.014-6.014a.271.271 0 0 1 .383.383m-7.754 6.957 1.033-1.033.383.383-1.033 1.033a.271.271 0 0 1-.383-.383m8.711-8.711a1.625 1.625 0 0 0-2.298 0l-7.18 7.18a1.625 1.625 0 0 0 2.298 2.298l7.18-7.18a1.625 1.625 0 0 0 0-2.298m-8.036 11.12a3.78 3.78 0 0 1-4.55-4.55l3.675-9.188 9.188 9.188-8.313 4.55z",
+  },
+  {
     name: "Apache Tomcat",
     level: "Intermediate",
     color: "#F8DC75",
@@ -211,7 +217,10 @@ export const FEATURED_PROJECTS = [
     title: "GGZone-WNC",
     description:
       "A team web project for a gaming-focused platform, featuring user flows, authentication screens, and deployed full-stack delivery.",
+    descriptionVi:
+      "Dự án web nhóm cho nền tảng game, gồm luồng người dùng, màn hình xác thực và triển khai full-stack.",
     tags: ["Team Project", "Web App", "Full Stack"],
+    tagsVi: ["Dự án nhóm", "Web App", "Full Stack"],
     image: "/images/projects/ggzone.jpg",
     href: "https://github.com/manhhuy140805/GGZone-WNC",
     liveHref: "https://ggzone-kappa.vercel.app/login",
@@ -220,7 +229,10 @@ export const FEATURED_PROJECTS = [
     title: "Quản lý cây xanh Đà Nẵng",
     description:
       "A team project for managing urban green trees in Da Nang, focused on data management, administrative workflows, and practical software delivery.",
+    descriptionVi:
+      "Dự án nhóm quản lý cây xanh đô thị tại Đà Nẵng, tập trung vào quản lý dữ liệu, quy trình quản trị và triển khai thực tế.",
     tags: ["Team Project", "Management", "Web App"],
+    tagsVi: ["Dự án nhóm", "Quản lý", "Web App"],
     image: "/images/projects/da-nang-tree-management.jpg",
     href: "https://github.com/NguyenHuuDinh135/225DAPM_Nhom9",
     displayTitle: "Qu\u1ea3n l\u00fd c\u00e2y xanh \u0110\u00e0 N\u1eb5ng",
@@ -229,7 +241,10 @@ export const FEATURED_PROJECTS = [
     title: "Marketplace - Upwork",
     description:
       "A marketplace web application inspired by Upwork, covering freelancer profiles, service discovery, hiring flows, and project collaboration features.",
+    descriptionVi:
+      "Ứng dụng marketplace lấy cảm hứng từ Upwork, gồm hồ sơ freelancer, tìm kiếm dịch vụ, quy trình thuê và cộng tác dự án.",
     tags: ["Marketplace", "Web App", "Full Stack"],
+    tagsVi: ["Marketplace", "Web App", "Full Stack"],
     image: "/images/projects/freelancer-marketplace.jpg",
     href: "https://github.com/manhhuy140805/TMDT-FE",
     githubLinks: [

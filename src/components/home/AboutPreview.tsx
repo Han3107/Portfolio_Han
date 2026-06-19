@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Eye, Zap, FileText, Layers } from "lucide-react";
+import { Zap, FileText, Layers } from "lucide-react";
 import { ABOUT_CARDS } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const iconMap: Record<string, React.ReactNode> = {
   Eye: <Image src="/logo.png" alt="Logo" width={24} height={24} />,
@@ -15,6 +16,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function AboutPreview() {
   useScrollReveal();
+  const { t } = useLanguage();
 
   return (
     <section className="relative border-b border-[var(--border)] bg-[var(--background)] overflow-hidden">
@@ -27,22 +29,20 @@ export default function AboutPreview() {
         {/* Left */}
         <div className="flex flex-col items-start reveal-left">
           <div className="max-w-2xl">
-            <p className="section-label">About Me</p>
+            <p className="section-label">{t.aboutPreview.label}</p>
             <div className="mt-2 flex items-center gap-4">
               <h2 className="section-title">
-                Ensuring software quality through meticulous testing and keen
-                observation
+                {t.aboutPreview.title}
               </h2>
               <span className="hidden h-px w-16 bg-[var(--accent-warm)] sm:block flex-shrink-0" />
             </div>
             <p className="section-desc">
-              Focused on software quality assurance, learning modern testing
-              tools, and finding bugs before users do.
+              {t.aboutPreview.description}
             </p>
           </div>
           <div className="mt-10">
             <Link href="/about" className="btn-secondary group">
-              More About Me
+              {t.aboutPreview.cta}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 ml-2">
                 -&gt;
               </span>
@@ -52,7 +52,10 @@ export default function AboutPreview() {
 
         {/* Right - Cards */}
         <div className="grid gap-6 sm:grid-cols-2 reveal">
-          {ABOUT_CARDS.map((card, i) => (
+          {ABOUT_CARDS.map((card, i) => {
+            const localizedCard = t.aboutCards[i];
+
+            return (
             <article
               key={i}
               className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]/40 p-8 shadow-lg backdrop-blur-sm transition-colors hover:bg-[var(--surface)]/80 hover:border-[var(--accent-soft)]"
@@ -61,25 +64,26 @@ export default function AboutPreview() {
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <div className="relative z-10 flex items-center justify-between">
+              <div className="relative z-10 flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--surface)] text-[var(--accent-cyan)] ring-1 ring-[var(--border)] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[var(--accent)] group-hover:text-white">
                   {iconMap[card.icon]}
                 </div>
                 <span className="text-sm font-semibold tracking-wider text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors">
-                  {card.tag}
+                  {localizedCard.tag}
                 </span>
               </div>
 
               <div className="relative z-10 mt-8">
                 <h3 className="text-xl font-semibold tracking-tight text-[var(--foreground)] mb-3">
-                  {card.title}
+                  {localizedCard.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-[var(--muted)] group-hover:text-[var(--muted)] transition-colors">
-                  {card.description}
+                  {localizedCard.description}
                 </p>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

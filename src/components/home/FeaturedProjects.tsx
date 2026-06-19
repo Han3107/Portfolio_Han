@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { FEATURED_PROJECTS } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 function GithubIcon({ size = 18 }: { size?: number }) {
   return (
@@ -15,6 +16,7 @@ function GithubIcon({ size = 18 }: { size?: number }) {
 
 export default function FeaturedProjects() {
   useScrollReveal();
+  const { locale, t } = useLanguage();
 
   return (
     <section className="relative border-b border-[var(--border)] bg-[var(--background)] py-16 lg:py-28 overflow-hidden">
@@ -25,14 +27,14 @@ export default function FeaturedProjects() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12 reveal">
           <div className="max-w-lg">
-            <p className="section-label">Featured Work</p>
-            <h2 className="section-title mt-2">Latest Projects That Recently Done</h2>
+            <p className="section-label">{t.featured.label}</p>
+            <h2 className="section-title mt-2">{t.featured.title}</h2>
             <p className="section-desc">
-              Explore my recent projects showcasing software testing skills.
+              {t.featured.description}
             </p>
           </div>
           <Link href="/projects" className="btn-secondary group flex-shrink-0">
-            View All Projects
+            {t.common.viewAllProjects}
             <ArrowUpRight size={16} className="ml-2 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
@@ -47,6 +49,12 @@ export default function FeaturedProjects() {
                   : [{ label: "GitHub", href: project.href }];
               const projectTitle =
                 "displayTitle" in project ? project.displayTitle : project.title;
+              const projectDescription =
+                locale === "vi" && "descriptionVi" in project
+                  ? project.descriptionVi
+                  : project.description;
+              const projectTags =
+                locale === "vi" && "tagsVi" in project ? project.tagsVi : project.tags;
 
               return (
                 <article
@@ -68,7 +76,7 @@ export default function FeaturedProjects() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`Open ${projectTitle} ${link.label} repository`}
+                          aria-label={`${t.common.openRepo}: ${projectTitle} ${link.label}`}
                           className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]"
                           style={{ transitionDelay: `${linkIndex * 100}ms` }}
                         >
@@ -80,7 +88,7 @@ export default function FeaturedProjects() {
                           href={project.liveHref}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`Open ${projectTitle} live site`}
+                          aria-label={`${t.common.openLive}: ${projectTitle}`}
                           className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--foreground)] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-[var(--accent-soft)]"
                           style={{ transitionDelay: `${githubLinks.length * 100}ms` }}
                         >
@@ -103,10 +111,10 @@ export default function FeaturedProjects() {
                       {projectTitle}
                     </a>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--muted)] line-clamp-2">
-                      {project.description}
+                      {projectDescription}
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
+                      {projectTags.map((tag) => (
                         <span
                           key={tag}
                           className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs text-[var(--muted)]"

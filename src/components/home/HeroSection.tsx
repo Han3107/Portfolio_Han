@@ -2,139 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 import { ArrowRight, Bug } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-
-type Particle = {
-  alpha: number;
-  baseRadius: number;
-  color: string;
-  life: number;
-  maxLife: number;
-  phase: number;
-  radius: number;
-  speed: number;
-  vx: number;
-  wave: number;
-  x: number;
-  y: number;
-};
-
-function FloatingParticles() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) {
-      return;
-    }
-
-    const context = canvas.getContext("2d");
-    if (!context) {
-      return;
-    }
-
-    let animationFrame = 0;
-    let height = 0;
-    let lastTime = 0;
-    let width = 0;
-    let particles: Particle[] = [];
-
-    const createParticle = (fromBottom = false): Particle => {
-      const isBright = Math.random() > 0.82;
-      const maxLife = 4.6 + Math.random() * 5.4;
-      const radius = isBright ? 2.4 + Math.random() * 3.2 : 1.2 + Math.random() * 2.4;
-
-      return {
-        alpha: isBright ? 0.62 + Math.random() * 0.22 : 0.28 + Math.random() * 0.36,
-        baseRadius: radius,
-        color: Math.random() > 0.72 ? "20, 221, 196" : "255, 111, 71",
-        life: fromBottom ? 0 : Math.random() * maxLife,
-        maxLife,
-        phase: Math.random() * Math.PI * 2,
-        radius,
-        speed: 28 + Math.random() * 54,
-        vx: -18 + Math.random() * 36,
-        wave: 10 + Math.random() * 28,
-        x: Math.random() * width,
-        y: fromBottom
-          ? height + Math.random() * 120
-          : Math.random() * (height + 180),
-      };
-    };
-
-    const resize = () => {
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = canvas.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
-      canvas.width = Math.floor(width * pixelRatio);
-      canvas.height = Math.floor(height * pixelRatio);
-      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-      const particleCount = Math.max(70, Math.floor((width * height) / 8800));
-      particles = Array.from({ length: particleCount }, () => createParticle());
-    };
-
-    const draw = (time = 0) => {
-      const delta = Math.min((time - lastTime) / 1000 || 0.016, 0.04);
-      lastTime = time;
-
-      context.clearRect(0, 0, width, height);
-      context.globalCompositeOperation = "lighter";
-
-      for (let index = 0; index < particles.length; index += 1) {
-        const particle = particles[index];
-        particle.life += delta;
-        particle.y -= particle.speed * delta;
-        particle.x +=
-          particle.vx * delta +
-          Math.sin(time * 0.002 + particle.phase) * particle.wave * delta;
-
-        const progress = particle.life / particle.maxLife;
-        const fade = Math.sin(Math.PI * progress);
-        const opacity = Math.max(0, particle.alpha * fade);
-        particle.radius =
-          particle.baseRadius * (0.82 + Math.sin(time * 0.005 + particle.phase) * 0.18);
-
-        context.beginPath();
-        context.fillStyle = `rgba(${particle.color}, ${opacity})`;
-        context.shadowBlur = particle.radius * 6;
-        context.shadowColor = `rgba(${particle.color}, ${opacity})`;
-        context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        context.fill();
-
-        if (
-          particle.life >= particle.maxLife ||
-          particle.y < -20 ||
-          particle.x < -30 ||
-          particle.x > width + 30
-        ) {
-          particles[index] = createParticle(true);
-        }
-      }
-
-      animationFrame = window.requestAnimationFrame(draw);
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-    animationFrame = window.requestAnimationFrame(draw);
-
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className="absolute inset-0 h-full w-full opacity-90"
-    />
-  );
-}
+import TopographicBackground from "@/components/ui/TopographicBackground";
+import FloatingBubbles from "@/components/ui/FloatingBubbles";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -142,13 +13,19 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
       <div className="absolute inset-0 z-0">
-        <div className="ambient-blob absolute -left-24 top-16 h-[430px] w-[430px] bg-[var(--accent-warm)] opacity-70" />
-        <div className="ambient-blob absolute right-[-10%] top-[-12%] h-[540px] w-[540px] bg-[var(--accent)] opacity-35 [animation-delay:-4s] [animation-duration:15s]" />
-        <div className="ambient-blob absolute bottom-[-18%] left-[35%] h-[360px] w-[360px] bg-[var(--accent-cyan)] opacity-35 [animation-delay:-8s] [animation-duration:18s]" />
+        <div className="absolute -left-24 top-16 h-[360px] w-[360px] rounded-full bg-[var(--accent-warm)] opacity-40 blur-[100px]" />
+        <div className="absolute right-[-10%] top-[-12%] h-[420px] w-[420px] rounded-full bg-[var(--accent)] opacity-20 blur-[110px]" />
+        <div className="absolute bottom-[-18%] left-[35%] h-[300px] w-[300px] rounded-full bg-[var(--accent-cyan)] opacity-20 blur-[90px]" />
         <div className="absolute inset-0 bg-[var(--hero-overlay)]" />
         <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_50%_50%,var(--hero-side-glow),transparent_58%)]" />
-        <FloatingParticles />
         <div className="absolute inset-0 grid-bg opacity-30" />
+        <div className="absolute inset-0 topo-bg opacity-40" />
+
+        {/* Topographic Contour Lines & Survey Elevations */}
+        <TopographicBackground />
+
+        {/* Dynamic Glassmorphic Floating Bubbles with Wobble & Popping */}
+        <FloatingBubbles />
       </div>
 
       <div className="relative z-10 mx-auto grid min-h-[680px] max-w-[1180px] items-center gap-8 px-6 py-12 lg:grid-cols-2 lg:gap-12 lg:py-8">
@@ -211,9 +88,10 @@ export default function HeroSection() {
             style={{ animationDelay: "0.4s" }}
           >
             <div className="absolute inset-0 scale-110 rounded-full bg-[var(--accent)] opacity-25 blur-3xl" />
+
             <div className="relative h-[270px] w-[270px] overflow-hidden rounded-full border-[5px] border-[var(--portrait-ring)] bg-[var(--accent-warm)] shadow-2xl shadow-[var(--accent)]/20 sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]">
               <Image
-                src="/han.jpg"
+                src="/han2.jpg"
                 alt={t.hero.portraitAlt}
                 fill
                 priority

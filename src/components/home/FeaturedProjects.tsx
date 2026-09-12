@@ -64,9 +64,6 @@ export default function FeaturedProjects() {
                   {/* Image Placeholder */}
                   <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[var(--surface)] to-[var(--background)]">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-4xl font-black bg-gradient-to-br from-[var(--accent)]/30 to-[var(--accent-cyan)]/30 bg-clip-text text-transparent">
-                        {String(i + 1).padStart(2, "0")}
-                      </div>
                     </div>
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-[var(--accent)]/0 transition-colors duration-500 group-hover:bg-[var(--accent)]/20 flex items-center justify-center gap-3">

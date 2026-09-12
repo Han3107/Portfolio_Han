@@ -9,7 +9,7 @@ const themeChangeEvent = "themechange";
 
 function getThemeSnapshot(): Theme {
   if (typeof window === "undefined") {
-    return "light";
+    return "dark";
   }
 
   const activeTheme = document.documentElement.dataset.theme;
@@ -22,11 +22,16 @@ function getThemeSnapshot(): Theme {
     return storedTheme;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark";
 }
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
   window.localStorage.setItem("theme", theme);
   window.dispatchEvent(new Event(themeChangeEvent));
 }
@@ -46,7 +51,7 @@ function subscribeThemeChange(onStoreChange: () => void) {
 }
 
 export default function ThemeToggle() {
-  const theme = useSyncExternalStore(subscribeThemeChange, getThemeSnapshot, () => "light");
+  const theme = useSyncExternalStore(subscribeThemeChange, getThemeSnapshot, () => "dark");
   const isDark = theme === "dark";
 
   function toggleTheme() {

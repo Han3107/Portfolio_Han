@@ -1,76 +1,94 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 /* Design Tokens */
 :root {
   color-scheme: light;
-  --background: #fff8f5;
-  --foreground: #17171f;
+  --background: #f4f9fd;
+  --foreground: #0a1628;
   --surface: #ffffff;
-  --surface-cream: #fff0ec;
-  --surface-elevated: rgba(255, 255, 255, 0.72);
-  --header-bg: rgba(255, 248, 245, 0.82);
-  --header-menu-bg: rgba(255, 248, 245, 0.96);
+  --surface-cream: #eef6fc;
+  --surface-elevated: rgba(255, 255, 255, 0.84);
+  --header-bg: rgba(244, 249, 253, 0.85);
+  --header-menu-bg: rgba(244, 249, 253, 0.96);
   --hero-overlay: linear-gradient(
     115deg,
-    rgba(255, 248, 245, 0.7),
-    rgba(255, 235, 229, 0.54) 45%,
-    rgba(255, 248, 245, 0.78)
+    rgba(244, 249, 253, 0.8),
+    rgba(189, 232, 245, 0.45) 45%,
+    rgba(244, 249, 253, 0.88)
   );
-  --hero-side-glow: rgba(255, 127, 112, 0.3);
+  --hero-side-glow: rgba(73, 136, 196, 0.35);
   --portrait-ring: #ffffff;
-  --github-card-bg: #fbfaf5;
-  --github-heat-empty: #fff0ec;
-  --github-heat-empty-border: #e8d5cf;
-  --github-scroll-bg: #2a2d36;
-  --github-scroll-track: rgba(109, 100, 112, 0.65);
-  --github-chart-axis: rgba(109, 100, 112, 0.22);
-  --accent: #ff4f45;
-  --accent-cyan: #ff7d6f;
-  --accent-warm: #ffc7bd;
-  --accent-soft: #ffe4df;
-  --muted: #6d6470;
-  --border: rgba(255, 79, 69, 0.16);
-  --bg-glow-primary: rgba(255, 199, 189, 0.55);
-  --bg-glow-secondary: rgba(255, 79, 69, 0.16);
-  --grid-line: rgba(255, 79, 69, 0.08);
-  --accent-shadow: rgba(255, 79, 69, 0.24);
-  --card-shadow: rgba(255, 79, 69, 0.13);
+  --github-card-bg: #ffffff;
+  --github-heat-empty: #eaf5fb;
+  --github-heat-empty-border: #bde8f5;
+  --github-scroll-bg: #0f2854;
+  --github-scroll-track: rgba(73, 136, 196, 0.65);
+  --github-chart-axis: rgba(73, 136, 196, 0.22);
+  --accent: #1c4d8d;
+  --accent-cyan: #4988c4;
+  --accent-warm: #0f2854;
+  --accent-soft: #bde8f5;
+  --muted: #526882;
+  --border: rgba(73, 136, 196, 0.28);
+  --bg-glow-primary: rgba(189, 232, 245, 0.65);
+  --bg-glow-secondary: rgba(73, 136, 196, 0.25);
+  --grid-line: rgba(73, 136, 196, 0.14);
+  --accent-shadow: rgba(28, 77, 141, 0.24);
+  --card-shadow: rgba(28, 77, 141, 0.08);
+
+  /* Tech Stack Icon Adaptive Tokens */
+  --tech-nextjs: #000000;
+  --tech-github: #181717;
+  --tech-prisma: #0c344b;
+  --tech-js: #ca8a04;
+  --tech-jwt: #000000;
+  --tech-react: #0284c7;
+  --tech-postgres: #336791;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #101115;
-  --foreground: #f7f2ef;
-  --surface: #191b22;
-  --surface-cream: #261b1e;
-  --surface-elevated: rgba(25, 27, 34, 0.78);
-  --header-bg: rgba(16, 17, 21, 0.84);
-  --header-menu-bg: rgba(16, 17, 21, 0.96);
+  --background: #071120;
+  --foreground: #eaf6fc;
+  --surface: #0f223d;
+  --surface-cream: #152e52;
+  --surface-elevated: rgba(15, 34, 61, 0.82);
+  --header-bg: rgba(7, 17, 32, 0.86);
+  --header-menu-bg: rgba(7, 17, 32, 0.96);
   --hero-overlay: linear-gradient(
     115deg,
-    rgba(16, 17, 21, 0.9),
-    rgba(43, 24, 26, 0.76) 45%,
-    rgba(16, 17, 21, 0.86)
+    rgba(7, 17, 32, 0.92),
+    rgba(15, 40, 84, 0.78) 45%,
+    rgba(7, 17, 32, 0.88)
   );
-  --hero-side-glow: rgba(255, 103, 95, 0.2);
-  --portrait-ring: rgba(255, 236, 232, 0.92);
-  --github-card-bg: rgba(25, 27, 34, 0.9);
-  --github-heat-empty: rgba(255, 154, 142, 0.09);
-  --github-heat-empty-border: rgba(255, 154, 142, 0.2);
-  --github-scroll-bg: rgba(255, 236, 232, 0.1);
-  --github-scroll-track: rgba(255, 236, 232, 0.42);
-  --github-chart-axis: rgba(255, 236, 232, 0.16);
-  --accent: #ff675f;
-  --accent-cyan: #ff9a8e;
-  --accent-warm: #82413c;
-  --accent-soft: #392427;
-  --muted: #b1a8ad;
-  --border: rgba(255, 154, 142, 0.22);
-  --bg-glow-primary: rgba(255, 103, 95, 0.12);
-  --bg-glow-secondary: rgba(255, 154, 142, 0.1);
-  --grid-line: rgba(255, 154, 142, 0.09);
-  --accent-shadow: rgba(255, 103, 95, 0.22);
-  --card-shadow: rgba(255, 103, 95, 0.16);
+  --hero-side-glow: rgba(73, 136, 196, 0.28);
+  --portrait-ring: rgba(189, 232, 245, 0.92);
+  --github-card-bg: rgba(15, 34, 61, 0.92);
+  --github-heat-empty: rgba(73, 136, 196, 0.1);
+  --github-heat-empty-border: rgba(73, 136, 196, 0.22);
+  --github-scroll-bg: rgba(189, 232, 245, 0.08);
+  --github-scroll-track: rgba(189, 232, 245, 0.35);
+  --github-chart-axis: rgba(189, 232, 245, 0.14);
+  --accent: #4988c4;
+  --accent-cyan: #7cb4e8;
+  --accent-warm: #1c4d8d;
+  --accent-soft: #0f2854;
+  --muted: #8da6c4;
+  --border: rgba(73, 136, 196, 0.25);
+  --bg-glow-primary: rgba(73, 136, 196, 0.2);
+  --bg-glow-secondary: rgba(28, 77, 141, 0.25);
+  --grid-line: rgba(73, 136, 196, 0.1);
+  --accent-shadow: rgba(73, 136, 196, 0.25);
+  --card-shadow: rgba(0, 0, 0, 0.45);
+
+  /* Tech Stack Icon Adaptive Tokens */
+  --tech-nextjs: #ffffff;
+  --tech-github: #ffffff;
+  --tech-prisma: #2dd4bf;
+  --tech-js: #f7df1e;
+  --tech-jwt: #ffffff;
+  --tech-react: #61dafb;
+  --tech-postgres: #5b92e5;
 }
 
 /* Base */
@@ -117,11 +135,11 @@ body {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 79, 69, 0.28);
+  background: rgba(28, 77, 141, 0.35);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 79, 69, 0.42);
+  background: rgba(28, 77, 141, 0.58);
 }
 
 /* Animations */
@@ -156,6 +174,84 @@ body {
   50% {
     opacity: 0.35;
     transform: scale(1.05);
+  }
+}
+
+/* Topographic Map Wave Animations */
+@keyframes topo-drift {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-12px) scale(1.02);
+  }
+}
+
+@keyframes topo-pulse {
+  0% {
+    transform: scale(0.97);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+/* Glassmorphic Bubble Physics */
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(-100vh - 180px)) translateX(36px);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble-wobble {
+  0% {
+    transform: scale(1, 1) translateX(-16px) rotate(-3deg);
+  }
+  50% {
+    transform: scale(0.93, 1.07) translateX(14px) rotate(3deg);
+  }
+  100% {
+    transform: scale(1.06, 0.94) translateX(-10px) rotate(-2deg);
+  }
+}
+
+@keyframes bubble-burst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  45% {
+    transform: scale(1.35);
+    opacity: 0.85;
+    filter: blur(0.5px);
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle-fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 15px), var(--ty, -15px)) scale(0);
+    opacity: 0;
   }
 }
 
@@ -281,6 +377,53 @@ body {
   animation: pulse-glow 4s ease-in-out infinite;
 }
 
+.bubble-rise-track {
+  animation-name: bubble-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.bubble-sphere {
+  animation: bubble-wobble var(--sway-time, 4s) ease-in-out infinite alternate;
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.25s ease;
+}
+
+.bubble-sphere:hover {
+  transform: scale(1.18) !important;
+  filter: brightness(1.25) contrast(1.1);
+}
+
+.bubble-pop {
+  animation: bubble-burst 0.32s ease-out forwards;
+}
+
+.bubble-sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-cyan);
+  animation: sparkle-fly 0.35s ease-out forwards;
+}
+
+.sparkle-1 { --tx: -24px; --ty: -24px; }
+.sparkle-2 { --tx: 24px; --ty: -20px; }
+.sparkle-3 { --tx: -20px; --ty: 22px; }
+.sparkle-4 { --tx: 26px; --ty: 22px; }
+
+.topo-waves-slow {
+  animation: topo-drift 18s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+.topo-waves-pulse {
+  animation: topo-pulse 11s ease-in-out infinite alternate;
+  transform-origin: 1100px 450px;
+}
+
 .animate-float-bg {
   animation: float-bg 6s ease-in-out infinite;
 }
@@ -374,6 +517,13 @@ body {
   background-size: 24px 24px;
 }
 
+/* Topographic Background Overlay */
+.topo-bg {
+  background-image:
+    radial-gradient(ellipse at 85% 50%, var(--bg-glow-secondary), transparent 60%),
+    radial-gradient(circle at 15% 70%, var(--bg-glow-primary), transparent 50%);
+}
+
 /* Glass Effect */
 .glass {
   background: var(--surface-elevated);
@@ -394,7 +544,7 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+  background: var(--accent);
   color: white;
   box-shadow: 0 16px 36px var(--accent-shadow);
   text-decoration: none;
@@ -579,11 +729,11 @@ body *::after {
 }
 
 .cute-chicken-cursor__comb {
-  background: var(--accent);
+  background: #ff5247;
   border-radius: 9999px 9999px 4px 4px;
   box-shadow:
-    5px 1px 0 var(--accent),
-    9px 2px 0 var(--accent);
+    5px 1px 0 #ff5247,
+    9px 2px 0 #ff5247;
   height: 7px;
   left: 11px;
   top: 0;
@@ -634,3 +784,17 @@ body *::after {
     font-size: 1.5rem;
   }
 }
+
+/* Hide Next.js dev indicator button (N icon at corner) */
+nextjs-portal,
+[data-nextjs-dev-indicator],
+[data-nextjs-toast],
+aside[data-nextjs-dev-indicator],
+div[data-nextjs-dev-indicator],
+button[data-nextjs-dev-indicator] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

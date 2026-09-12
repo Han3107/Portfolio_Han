@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
-import CuteChickenCursor from "@/components/ui/CuteChickenCursor";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import ThreeBackground from "@/components/layout/ThreeBackground";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,11 +40,16 @@ export default function RootLayout({
               (() => {
                 try {
                   const storedTheme = localStorage.getItem("theme");
-                  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-                  const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : systemTheme;
+                  const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
                   document.documentElement.dataset.theme = theme;
+                  if (theme === "dark") {
+                    document.documentElement.classList.add("dark");
+                  } else {
+                    document.documentElement.classList.remove("dark");
+                  }
                 } catch {
-                  document.documentElement.dataset.theme = "light";
+                  document.documentElement.dataset.theme = "dark";
+                  document.documentElement.classList.add("dark");
                 }
               })();
             `,
@@ -53,13 +58,13 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         <LanguageProvider>
+          <ThreeBackground />
           <div className="flex min-h-screen flex-col">
             <Header />
             <div className="flex-1">
               <main>{children}</main>
             </div>
           </div>
-          <CuteChickenCursor />
         </LanguageProvider>
       </body>
     </html>

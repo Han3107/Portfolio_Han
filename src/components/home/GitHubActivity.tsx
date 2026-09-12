@@ -19,12 +19,12 @@ const monthlyCommits = [
 ];
 
 const languageColors = [
-  "#ff4f45",
-  "#ff8f70",
-  "#b83f24",
-  "#ffb59f",
-  "#d65a3a",
-  "#9f341d",
+  "#1C4D8D",
+  "#4988C4",
+  "#0F2854",
+  "#7cb4e8",
+  "#BDE8F5",
+  "#3568a8",
 ];
 
 const languages = [
@@ -196,9 +196,9 @@ export default function GitHubActivity() {
       <div className="relative mx-auto w-full max-w-7xl px-6">
         <div className="mb-8 flex items-center gap-3 reveal">
           <div className="flex h-11 w-11 items-end justify-center gap-1 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-2 shadow-sm">
-            <span className="h-4 w-1.5 rounded-full bg-[#ffb59f]" />
+            <span className="h-4 w-1.5 rounded-full bg-[#BDE8F5]" />
             <span className="h-7 w-1.5 rounded-full bg-[var(--accent)]" />
-            <span className="h-5 w-1.5 rounded-full bg-[#9f341d]" />
+            <span className="h-5 w-1.5 rounded-full bg-[#4988C4]" />
           </div>
           <h2 className="text-3xl font-semibold text-[var(--foreground)]">
             GitHub Stats
@@ -215,7 +215,7 @@ export default function GitHubActivity() {
                 <p className="mt-2 text-[var(--muted)]">Commits</p>
               </div>
               <div className="rounded-[8px] border border-[var(--border)] bg-[var(--surface-cream)]/60 p-6 text-center">
-                <p className="text-4xl font-bold text-[#9f341d]">10+</p>
+                <p className="text-4xl font-bold text-[var(--accent-cyan)]">10+</p>
                 <p className="mt-2 text-[var(--muted)]">Projects</p>
               </div>
             </div>
@@ -224,7 +224,7 @@ export default function GitHubActivity() {
               <p className="text-sm font-bold uppercase tracking-[0.12em] text-[var(--muted)]">
                 Core Stack
               </p>
-              <p className="mt-4 text-xl font-bold text-transparent bg-gradient-to-r from-[var(--accent)] via-[var(--accent-cyan)] to-[#9f341d] bg-clip-text">
+              <p className="mt-4 text-xl font-bold text-transparent bg-gradient-to-r from-[var(--accent)] via-[var(--accent-cyan)] to-[#1C4D8D] bg-clip-text">
                 NestJS - Next.js - PostgreSQL
               </p>
             </div>

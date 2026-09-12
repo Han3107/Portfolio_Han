@@ -16,10 +16,12 @@ type LanguageContextValue = {
   t: Translation;
 };
 
+const defaultLocale: Locale = "en";
+
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
     window.setTimeout(() => {
@@ -27,7 +29,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       if (storedLocale === "en" || storedLocale === "vi") {
         setLocaleState(storedLocale);
         document.documentElement.lang = storedLocale;
+        return;
       }
+
+      document.documentElement.lang = defaultLocale;
     }, 0);
   }, []);
 

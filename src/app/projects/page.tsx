@@ -84,9 +84,6 @@ export default function ProjectsPage() {
                     {/* Image */}
                     <div className="relative h-52 overflow-hidden bg-gradient-to-br from-[var(--surface)] to-[var(--background)]">
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-5xl font-black bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-cyan)]/20 bg-clip-text text-transparent select-none">
-                          {String(i + 1).padStart(2, "0")}
-                        </div>
                       </div>
                       <div className="absolute inset-0 bg-[var(--accent)]/0 transition-colors duration-500 group-hover:bg-[var(--accent)]/10 flex items-center justify-center gap-3">
                         {"liveHref" in project && project.liveHref ? (

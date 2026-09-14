@@ -91,6 +91,10 @@
   --tech-postgres: #5b92e5;
 }
 
+:root[data-theme="dark"] .logo-mark {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(124, 180, 232, 0.4));
+}
+
 /* Base */
 *,
 *::before,
@@ -387,7 +391,9 @@ body {
 .bubble-sphere {
   animation: bubble-wobble var(--sway-time, 4s) ease-in-out infinite alternate;
   will-change: transform;
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.25s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    filter 0.25s ease;
 }
 
 .bubble-sphere:hover {
@@ -409,10 +415,22 @@ body {
   animation: sparkle-fly 0.35s ease-out forwards;
 }
 
-.sparkle-1 { --tx: -24px; --ty: -24px; }
-.sparkle-2 { --tx: 24px; --ty: -20px; }
-.sparkle-3 { --tx: -20px; --ty: 22px; }
-.sparkle-4 { --tx: 26px; --ty: 22px; }
+.sparkle-1 {
+  --tx: -24px;
+  --ty: -24px;
+}
+.sparkle-2 {
+  --tx: 24px;
+  --ty: -20px;
+}
+.sparkle-3 {
+  --tx: -20px;
+  --ty: 22px;
+}
+.sparkle-4 {
+  --tx: 26px;
+  --ty: 22px;
+}
 
 .topo-waves-slow {
   animation: topo-drift 18s ease-in-out infinite alternate;
@@ -520,7 +538,11 @@ body {
 /* Topographic Background Overlay */
 .topo-bg {
   background-image:
-    radial-gradient(ellipse at 85% 50%, var(--bg-glow-secondary), transparent 60%),
+    radial-gradient(
+      ellipse at 85% 50%,
+      var(--bg-glow-secondary),
+      transparent 60%
+    ),
     radial-gradient(circle at 15% 70%, var(--bg-glow-primary), transparent 50%);
 }
 
@@ -665,7 +687,9 @@ body,
 body *,
 body *::before,
 body *::after {
-  cursor: url("/chicken-cursor.png") 16 16, auto !important;
+  cursor:
+    url("/chicken-cursor.png") 16 16,
+    auto !important;
 }
 
 .cute-chicken-cursor__ring {
@@ -797,4 +821,3 @@ button[data-nextjs-dev-indicator] {
   opacity: 0 !important;
   pointer-events: none !important;
 }
-

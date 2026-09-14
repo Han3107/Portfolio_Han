@@ -9,7 +9,7 @@ export default function Logo({ size = 50 }: { size?: number }) {
       height={size}
       priority
       unoptimized
-      className="block object-contain"
+      className="logo-mark block object-contain"
       style={{ width: size, height: size }}
     />
   );

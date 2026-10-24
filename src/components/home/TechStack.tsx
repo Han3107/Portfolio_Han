@@ -25,7 +25,7 @@ const TECH_GROUPS = [
 
 const TECH_BY_NAME = new Map(TECH_STACK.map((tech) => [tech.name, tech]));
 
-function TechBadge({ name, level, color, viewBox = "0 0 24 24", icon }: TechItem) {
+function TechBadge({ name, color, viewBox = "0 0 24 24", icon }: TechItem) {
   return (
     <div className="group flex min-h-14 items-center gap-3.5 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 shadow-sm transition-all duration-300 hover:border-[var(--accent-cyan)] hover:-translate-y-0.5 hover:shadow-md">
       <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface-cream)]/70 transition-transform duration-300 group-hover:scale-110">
@@ -43,7 +43,6 @@ function TechBadge({ name, level, color, viewBox = "0 0 24 24", icon }: TechItem
         <p className="truncate text-sm font-semibold text-[var(--foreground)]">
           {name}
         </p>
-        <p className="mt-0.5 text-xs text-[var(--muted)]">{level}</p>
       </div>
     </div>
   );

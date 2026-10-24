@@ -12,7 +12,7 @@ export const NAV_LINKS = [
 // Tech Stack
 export interface TechItem {
   name: string;
-  level: "Advanced" | "Intermediate" | "Beginner";
+  level?: "Advanced" | "Intermediate" | "Beginner";
   color: string;
   viewBox?: string;
   icon: string; // SVG path data
